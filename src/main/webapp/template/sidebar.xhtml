@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="container" >
+		<div class="sidebar">
+			<p:commandButton icon="pi pi-arrow-right" type="button"
+				onclick="PF('sidebar1').show()" styleClass="p-mr-2" visible="true" />
+
+			<p:sidebar widgetVar="sidebar1" style="background: #2196f3">
+						<p:divider />
+						<p:commandLink value="ISSUES" action="issueList" style="color: white;" /><br/>
+						<p:commandLink value="PROJECTS" action="projectList" style="color: white;"/><br/>
+						<p:commandLink value="ACCOUNTS" action="accountList" style="color: white;"/>
+			</p:sidebar>
+			<h:form>
+				<p:menu styleClass="selectedMenu" style="border: none;">
+					
+					<p:divider />
+					<p:menuitem value="ISSUES" action="issueList" />
+					
+					<p:menuitem value="PROJECTS" action="projectList" />
+			
+					<p:menuitem value="ACCOUNTS" action="accountList" />
+					
+				</p:menu>
+			</h:form>
+		</div>
+	</div>
+
+</ui:composition>

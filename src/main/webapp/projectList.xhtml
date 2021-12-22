@@ -1,0 +1,133 @@
+<ui:composition template="/template/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="sidebar"></ui:define>
+	<ui:define name="content">
+
+		<h:form id="filter_form">
+		
+			<f:metadata>
+				<f:event type="preRenderView" listener="#{projectListView.init}"/>	
+			</f:metadata>
+
+			<p:dataTable 
+					var="project" 
+					value="#{projectListView.projects}"
+					widgetVar="projectsTable"
+					filteredValue="#{projectListView.filteredProjects}"
+					globalFilterOnly="#{projectListView.globalFilterOnly}"
+					emptyMessage="No records found"
+					paginator="true"
+					paginatorPosition="bottom" 
+					rows="10"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}	"
+					currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}">
+
+
+				<f:facet name="header">
+
+					<div class="p-d-flex p-ai-center p-jc-between">
+
+						<div>
+							
+								<div class="ui-input-icon-left p-mr-12">
+									<p:commandButton value="My Projects"
+										action="#{projectListView.submitFilterForMyProjects}" 
+										type="submit"
+										styleClass="ui-button ui-button-flat"
+										onclick="javascript:alert('hello'))" />
+								</div>
+							
+							<p:spacer width="10" />
+							<div class="ui-input-icon-left p-mr-12">
+								<p:commandButton value="Clear All"
+									action="#{projectListView.submitRemoveFilter}" type="submit"
+									styleClass="ui-button ui-button-flat" 
+									onclick="javascript:alert('hello'))"/>
+										
+							</div>
+
+							<p:inputText id="globalFilter"
+								onkeyup="PF('projectsTable').filter()" style="width:10rem"
+								placeholder="Global search" />
+
+
+							<p:spacer width="550" />
+							<p:commandButton value="Create Project"
+								action="#{projectView.setEditModeForCreate}" icon="pi pi-plus"
+								styleClass="ui-button-primary" type="submit" />
+
+						</div>
+
+					</div>
+
+
+				</f:facet>
+
+				<br />
+
+				<p:column headerText="Name" sortBy="#{project.name}"
+					filterBy="#{project.name}" style="width:200px">
+
+					<h:outputText value="#{project.name}" />
+
+				</p:column>
+
+				<p:column field="status" headerText="Status" sortBy="#{projectListView.decodeIsOpen(project)}"
+						filterMatchMode="exact" filterBy="#{projectListView.decodeIsOpen(project)}" style="width:175px">
+
+						<f:facet name="filter">
+
+							<p:selectOneMenu onchange="PF('projectsTable').filter()"
+								styleClass="custom-filter">
+
+								<f:selectItem itemLabel="All" itemValue="#{null}"
+									noSelectionOption="true" />
+
+								<f:selectItems value="#{projectListView.isOpen}" />
+
+							</p:selectOneMenu>
+
+						</f:facet>
+
+					<h:outputText value="#{projectListView.decodeIsOpen(project)}"/>
+
+				</p:column>
+
+				<p:column headerText="Last Modified">
+
+					<h:outputText value="#{project.modified}">
+						<f:convertDateTime pattern="MM-dd-yyyy hh:mm a" />
+					</h:outputText>
+
+				</p:column>
+
+				<p:column headerText="Issues" style="text-align: center">
+
+					<p:link 
+						style="font-weight:bold; text-decoration: underline" value="#{project.getIssues().size()}"
+						outcome="issueList.xhtml?projectId=#{project.projectId}"
+						rendered="#{project.getIssues().size() > 0}" />
+
+				</p:column>
+
+				<p:column headerText="Actions">
+ 
+					<p:button value="Edit"
+						outcome="project.xhtml?projectId=#{project.projectId}"
+						styleClass="ui-button-primary" type="submit" />
+
+
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

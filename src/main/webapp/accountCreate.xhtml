@@ -1,0 +1,79 @@
+<ui:composition template="/template/pageAccount.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="content">
+         <div class="login-wrapper">
+             <div class="login-panel">
+                 
+				<br/>
+                 <div class="login-form">
+					 <h:form id="form_create">
+					 <p:graphicImage name="beetle.png" styleClass="logo" library="images" />
+					 <h2>Create Your Account</h2>
+						<p>
+							Already have an account? <a href="login.xhtml">Login</a>
+						</p>
+						<br/>
+						<p:inputText id="firstName"
+							value="#{accountView.account.firstName}" placeholder="First Name" />
+						<br />
+						<br />
+						<p:inputText id="lastName" value="#{accountView.account.lastName}"
+							placeholder="Last Name" />
+						<br />
+						<br />
+						<p:inputText id="email" value="#{accountView.account.email}"
+							placeholder="Email" />
+						<br />
+						<br />
+						<p:password id="password" value="#{accountView.account.password}"
+							placeholder="Password" />
+						<br />
+						<br />
+						<p:selectOneMenu value="#{accountView.account.role}" id="role" style="width: 167px">
+							<f:selectItem itemLabel="Select Role" itemValue="#{null}"
+								noSelectionOption="false" />
+							<f:selectItem itemLabel="Analyst" itemValue="ANALYST" />
+							<f:selectItem itemLabel="Developer" itemValue="DEVELOPER" />
+							<f:selectItem itemLabel="Tester" itemValue="TESTER" />
+							<f:selectItem itemLabel="SysAdmin" itemValue="SYSADMIN" />
+							<f:selectItem itemLabel="PM" itemValue="PM" />
+							<f:selectItem itemLabel="Tracker Admin" itemValue="TRKADMIN" />
+						</p:selectOneMenu>
+						<br />
+						<br />
+						<p:commandButton value="CREATE" type="submit" update="form_create"
+							action="#{accountView.submitCreate}" />
+					</h:form>
+                 </div>
+
+                 <p>A problem? <a href="#">Click here</a> and let us help you.</p>
+             </div>
+             <div class="login-image">
+                 <div class="login-image-content">
+                 <br/><br/><br/><br/><br/><br/><br/>
+                    <h1>Tracker</h1>
+					<h1 style="font-size: 5vh">Agile Issue Management</h1>
+					<h3>
+						A Full Stack Java application built on Java-OpenJDK 16,
+						JSF/Primefaces, <br /> Spring, JPA/Hibernate, and PostgreSQL.
+						Offering an agile application for issue and project
+						management.
+					</h3>
+                 </div>
+                 <div class="image-footer">
+                     <p>Visit my GitHub for detailed code, or connect with me on LinkedIn.</p>
+                     <div class="icons">
+                         <p:link href="https://github.com/jltrent12" target="_blank"><i class="pi pi-github"/></p:link>
+                         <p:link href="https://www.linkedin.com/in/jenniferltrent/" target="_blank"><i class="pi pi-linkedin"/></p:link>
+                     </div>
+                 </div>    
+             </div>
+         </div>
+</ui:define>
+
+</ui:composition>

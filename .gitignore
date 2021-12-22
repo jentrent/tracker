@@ -1,0 +1,32 @@
+# Compiled class files
+*.class
+
+# Package files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Test properties
+test.properties
+
+# Maven
+target/
+
+# Eclipse
+.project
+.classpath
+build/
+.settings/
+.metadata/
+.recommenders/
+.tern-project
+RemoteSystemsTempFiles/
+
+# Local OS files
+.DS_Store
+
+# Log file
+*.log

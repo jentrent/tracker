@@ -1,0 +1,98 @@
+<ui:composition template="/template/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<style>
+/* reset on the showcase style*/
+body .ui-panelgrid .ui-panelgrid-cell {
+	background-color: transparent;
+}
+
+/* example use of styles for your form */
+.my-heading-row {
+	background-color: var(- -surface-c);
+	font-weight: bold;
+}
+</style>
+	<ui:define name="content">
+		
+		<p:card style="width: 45rem; margin-bottom: 2em">
+		
+			<h:form id="account_form">
+
+				<f:metadata>
+
+					<f:viewParam name="id" value="#{accountView.account.accountId}" />
+
+				</f:metadata>
+				
+				<p:growl id="growl"/>
+			
+       			<p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
+
+				<div class="card">
+
+
+					<p:panelGrid columns="1" columnClasses="ui-grid-col-6"
+						layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+						style="border:0px none; background-color:transparent">
+
+						<p:column>
+							<div class="p-field p-col-12 p-md-3">
+								<b><p:outputLabel for="@next" value="First Name" /></b><br />
+								<br />
+								<p:inputText value="#{accountView.account.firstName}"
+									placeholder="#{accountView.account.firstName}" /><br /> <br />
+
+								 <b><p:outputLabel for="@next"
+										value="Last Name" /></b><br /><br />
+										
+								<p:inputText value="#{accountView.account.lastName}"
+									placeholder="#{accountView.account.lastName}" /><br /> <br />
+								
+								
+								<b><p:outputLabel for="@next" value="Role" /></b><br /><br />
+								<p:selectOneMenu value="#{accountView.account.role}" id="role">
+									<f:selectItem itemLabel="Select One" itemValue="#{null}"
+										noSelectionOption="false" />
+									<f:selectItem itemLabel="Analyst" itemValue="ANALYST" />
+									<f:selectItem itemLabel="Developer" itemValue="DEVELOPER" />
+									<f:selectItem itemLabel="Tester" itemValue="TESTER" />
+									<f:selectItem itemLabel="SysAdmin" itemValue="SYSADMIN" />
+									<f:selectItem itemLabel="PM" itemValue="PM" />
+									<f:selectItem itemLabel="Tracker Admin" itemValue="TRKADMIN" />
+								</p:selectOneMenu><br /><br />
+
+
+								<b><p:outputLabel value="Email: " /></b>
+								<p:outputLabel value="#{accountView.account.email}" />
+
+								<br />
+								<br />
+							</div>
+						</p:column>
+
+						<p:row>
+							<p:column styleClass="ui-grid-col-12">
+
+								<p:commandButton update="account_form" value="Update"
+									type="submit" action="#{accountView.submitUpdate}"
+									styleClass="p-mr-2 p-mb-2" style="width: auto" />
+								<h:outputText value="&#160;" />
+
+								<p:commandButton value="Cancel" type="submit"
+									action="#{accountView.submitCancel}" process="@this"
+									styleClass="p-mb-2" style="width: auto" />
+							</p:column>
+						</p:row>
+
+					</p:panelGrid>
+				</div>
+			</h:form>
+		</p:card>
+	</ui:define>
+
+</ui:composition>

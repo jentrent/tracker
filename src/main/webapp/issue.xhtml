@@ -1,0 +1,246 @@
+<ui:composition template="/template/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<style>
+/* reset on the showcase style*/
+body .ui-panelgrid .ui-panelgrid-cell {
+	background-color: transparent;
+}
+
+/* example use of styles for your form */
+.my-heading-row {
+	background-color: var(- -surface-c);
+	font-weight: bold;
+}
+</style>
+
+	<ui:define name="content">
+	
+		<p:card style="width: 75rem; margin-bottom: 2em">
+		
+		<h:form id="issue_form">
+		
+			<p:growl id="growl"/>
+			
+       		<p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
+			
+			<p:ajaxStatus oncomplete="setTimeout(function() { $('.ui-messages').slideUp(); }, 5000)" />
+
+			<f:metadata>
+				<f:event type="preRenderView" listener="#{issueView.init}"/>
+				<f:viewParam name="id" value="#{issueView.issue.issueId}" />
+			</f:metadata>
+
+			<div class="card">
+
+				<p:panelGrid columns="3"
+					columnClasses="ui-grid-col-12,ui-grid-col-8,ui-grid-col-8"
+					layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+					style="border:0px none; background-color:transparent;">
+
+					<p:column>
+						<div class="p-field p-col-12 p-md-3">
+							<b><p:outputLabel for="@next" value="Issue Title" /></b>
+							
+							<br/><br/>
+							
+							<p:inputText value="#{issueView.issue.title}" />
+							
+							<br/><br/>
+							
+							<b><p:outputLabel for="@next" value="Description" />
+							
+							</b><br/><br/>
+							
+							
+							<p:textEditor 
+								widgetVar="editor1" 
+								value="#{issueView.issue.description}" 
+								height="300"  
+								secure="false"
+								placeholder="Enter your issue description."/>
+							
+							<br /> <b><h:outputText value="Creator: "
+									rendered="#{issueView.issue.createdBy != null}" /></b>
+
+							<h:outputText
+								value="#{issueView.issue.createdBy.lastName}, #{issueView.issue.createdBy.firstName}"
+								rendered="#{issueView.issue.createdBy != null}" />
+							<br /> <b><h:outputText value="Created: "
+									rendered="#{issueView.issue.created != null}" /></b>
+							<h:outputText value="#{issueView.issue.created}"
+								rendered="#{issueView.issue.created != null}">
+								<f:convertDateTime pattern="MM-dd-yyyy h:mm a" timeZone="CST" />
+							</h:outputText>
+							<br /> <b><h:outputText value="Last Modified: "
+									rendered="#{issueView.issue.modified != null}" /></b>
+							<h:outputText value="#{issueView.issue.modified}"
+								rendered="#{issueView.issue.modified != null}">
+								<f:convertDateTime pattern="MM-dd-yyyy h:mm a" timeZone="CST" />
+							</h:outputText>
+						</div>
+					</p:column>
+
+					<p:column>
+
+						<div class="p-field p-col-12 p-md-3">
+
+							<b><p:outputLabel value="Project" /></b><br/><br/>
+
+							<p:selectOneMenu value="#{issueView.projectId}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.projectId}" />
+								<f:selectItems value="#{issueView.projects}" var="project"
+									itemValue="#{project.projectId}" itemLabel="#{project.name}" />
+							</p:selectOneMenu>
+
+						</div>
+						<br />
+
+
+						<div class="p-field p-col-12 p-md-3">
+							<b><p:outputLabel value="Type" /></b><br/><br/>
+							<p:selectOneMenu value="#{issueView.issue.type}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.issue.type}" />
+								<f:selectItem itemValue="BUG" itemLabel="Bug" />
+								<f:selectItem itemValue="ENHANCEMENT" itemLabel="Enhancement" />
+								<f:selectItem itemValue="DOCUMENTATION"
+									itemLabel="Documentation" />
+								<f:selectItem itemValue="SUPPORT" itemLabel="Support" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<div class="p-field p-col-12 p-md-3">
+							<b><p:outputLabel for="@next" value="Priority" /></b><br/><br/>
+							<p:selectOneMenu value="#{issueView.issue.priority}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.issue.priority}" />
+								<f:selectItem itemValue="LOWEST" itemLabel="Lowest" />
+								<f:selectItem itemValue="LOW" itemLabel="Low" />
+								<f:selectItem itemValue="MEDIUM" itemLabel="Medium" />
+								<f:selectItem itemValue="HIGH" itemLabel="High" />
+								<f:selectItem itemValue="HIGHEST" itemLabel="Highest" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<div class="p-field p-col-12 p-md-3">
+							<b><p:outputLabel value="Status" /></b><br/><br/>
+							<p:selectOneMenu value="#{issueView.issue.status}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.issue.status}" />
+								<f:selectItem itemValue="NEW" itemLabel="New" />
+								<f:selectItem itemValue="DEVELOPMENT" itemLabel="Development" />
+								<f:selectItem itemValue="TESTING" itemLabel="Testing" />
+								<f:selectItem itemValue="VERIFIED" itemLabel="Verified" />
+								<f:selectItem itemValue="CLOSED" itemLabel="Closed" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<div class="p-field p-col-12 p-md-4">
+							<b><p:outputLabel for="@next" value="Due Date" /></b><br/><br/>
+							<p:datePicker id="basic" value="#{issueView.issue.due}" />
+						</div>
+						<br />
+
+					</p:column>
+
+					<p:column>
+						<div class="p-field p-col-12 p-md-3">
+							<b><h:outputLabel value="Analyst" /></b><br/><br/>
+							<p:selectOneMenu value="#{issueView.analystId}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.analystId}" />
+								<f:selectItems value="#{accountListView.accounts}" var="account"
+									itemValue="#{account.accountId}"
+									itemLabel="#{account.lastName}, #{account.firstName}" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<div class="p-field p-col-12 p-md-3">
+							<b><h:outputLabel value="Developer" /></b><br/><br/>
+							<p:selectOneMenu value="#{issueView.developerId}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.developerId}" />
+								<f:selectItems value="#{accountListView.accounts}" var="account"
+									itemValue="#{account.accountId}"
+									itemLabel="#{account.lastName}, #{account.firstName}" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<div class="p-field p-col-12 p-md-3">
+							<b><h:outputLabel value="Tester" /></b><br/><br/>
+							<p:selectOneMenu value="#{issueView.testerId}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.testerId}" />
+								<f:selectItems value="#{accountListView.accounts}" var="account"
+									itemValue="#{account.accountId}"
+									itemLabel="#{account.lastName}, #{account.firstName}" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<div class="p-field p-col-12 p-md-3">
+							<b><h:outputLabel value="SysAdmin" /></b><br/><br/>
+							<p:selectOneMenu value="#{issueView.sysAdminId}">
+								<f:selectItem itemLabel="Select"
+									itemValue="#{issueView.sysAdminId}" />
+								<f:selectItems value="#{accountListView.accounts}" var="account"
+									itemValue="#{account.accountId}"
+									itemLabel="#{account.lastName}, #{account.firstName}" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<div class="p-field p-col-12 p-md-3">
+							<b><h:outputLabel value="PM" /></b><br/><br />
+							<p:selectOneMenu value="#{issueView.pMId}">
+								<f:selectItem itemLabel="Select" itemValue="#{issueView.pMId}" />
+								<f:selectItems value="#{accountListView.accounts}" var="account"
+									itemValue="#{account.accountId}"
+									itemLabel="#{account.lastName}, #{account.firstName}" />
+							</p:selectOneMenu>
+						</div>
+						<br /><br />
+						<p:row styleClass="ui-grid-col-6">
+
+							<p:commandButton update="issue_form" value="Create" type="submit"
+								rendered="#{!issueView.isEditMode}"
+								action="#{issueView.submitCreate}" styleClass="p-mr-2 p-mb-2"
+								style="width: auto" />
+							
+
+							<p:commandButton update="issue_form" value="Update" type="submit"
+								rendered="#{issueView.isEditMode}"
+								action="#{issueView.submitUpdate}" styleClass="p-mr-2 p-mb-2"
+								style="width: auto" />
+							<h:outputText value="&#160;" />
+
+							<p:commandButton update="issue_form" value="Delete" type="submit"
+								rendered="#{issueView.isEditMode}"
+								action="#{issueView.submitDelete}" styleClass="p-mr-2 p-mb-2"
+								style="width: auto" />
+							<h:outputText value="&#160;" />
+
+							<p:commandButton value="Cancel" type="submit"
+								action="#{issueView.submitCancel}" process="@this"
+								styleClass="p-mb-2" style="width: auto" />
+						</p:row>
+					</p:column>
+
+				</p:panelGrid>
+			</div>
+		</h:form>
+</p:card >
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Tracker</title>
+	<h:outputStylesheet name="/css/tracker.css" />
+	<link rel="icon" type="image/gif/png"
+		href="../resources/images/beetle.png" />
+
+	<f:facet name="first">
+		<!--  <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-93461466-1"></script> -->
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link href="#{resource['showcase/images/favicon-32x32.png']}"
+			rel="icon" type="image/png" sizes="32x32" />
+		<link href="#{resource['showcase/images/favicon-16x16.png']}"
+			rel="icon" type="image/png" sizes="16x16" />
+	</f:facet>
+
+	<h:outputStylesheet name="css/primeflex.css" library="showcase" />
+
+	<h:outputStylesheet name="css/flags/flags.css" library="showcase" />
+
+</h:head>
+
+<h:body style="display:none">
+
+	<div class="flex-wrapper">
+
+		<div id="page">
+
+			<div id="header">
+				<ui:insert name="header">
+					<ui:include src="/template/header.xhtml" />
+				</ui:insert>
+			</div>
+
+			<h:panelGrid id="panel" columns="2">
+
+				<!-- <h:panelGroup id="sidebar">
+				<ui:insert name="sidebar">
+					<ui:include src="/template/sidebar.xhtml" />
+				</ui:insert>
+			</h:panelGroup> -->
+				<h:panelGroup id="content">
+
+					<ui:insert name="content">
+						<ui:include src="/template/content.xhtml" />
+					</ui:insert>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+			<!-- <div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="/template/footer.xhtml" />
+			</ui:insert>
+		</div> -->
+
+		</div>
+	</div>
+
+</h:body>
+
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'UA-93461466-1');
+</script>
+<h:outputScript name="jquery/jquery.js" library="primefaces" />
+
+<h:outputScript name="jquery/jquery-plugins.js" library="primefaces" />
+
+<h:outputScript name="locales/locale-#{app.locale.language}.js"
+	library="primefaces" />
+</html>

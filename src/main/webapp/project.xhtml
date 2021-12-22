@@ -1,0 +1,156 @@
+<ui:composition template="/template/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<style>
+/* reset on the showcase style*/
+body .ui-panelgrid .ui-panelgrid-cell {
+	background-color: transparent;
+}
+
+/* example use of styles for your form */
+.my-heading-row {
+	background-color: var(- -surface-c);
+	font-weight: bold;
+}
+</style>
+	<ui:define name="content">
+
+		
+
+		<p:card style="width: 75rem; margin-bottom: 2em">
+		<h:form id="project_form">
+
+			<f:metadata>
+			
+				<f:event type="preRenderView" listener="#{projectView.init}"/>
+				<f:viewParam name="id" value="#{projectView.project.projectId}"/>	
+
+			</f:metadata>
+
+			<div class="card">
+
+			<p:growl id="growl"/>
+			
+       		<p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
+
+		<p:ajaxStatus oncomplete="setTimeout(function() { $('.ui-messages').slideUp(); }, 5000)" />
+				<p:panelGrid columns="3"
+					columnClasses="ui-grid-col-6, ui-grid-col-4" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid"
+					style="border:0px none; background-color:transparent;">
+
+					<p:column>
+						<div class="p-field p-col-12 p-md-3">
+							<b><p:outputLabel for="@next" value="Project Name"/></b>
+							
+							<br/>
+							
+							<br />
+							
+							<p:inputText value="#{projectView.project.name}" />
+
+							<br/>
+							<br/>
+
+							<b><p:outputLabel for="@next" value="Description" /></b>
+							
+							<br/>
+							<br/>
+							
+							<p:textEditor value="#{projectView.project.description}"
+								secure="false" height="300"
+								placeholder="Enter your project description here.">
+								
+								<f:facet name="toolbar">
+									<span class="ql-formats">
+										<button class="ql-bold"></button>
+										<button class="ql-italic"></button>
+										<button class="ql-underline"></button>
+										<button class="ql-strike"></button>
+									</span>
+									<span class="ql-formats"> <select class="ql-font"></select>
+										<select class="ql-size"></select>
+									</span>
+								</f:facet>
+								
+							</p:textEditor>
+							
+						</div>
+					</p:column>
+					<p:column>
+						<div class="p-field p-col-12 p-md-3">
+							<b><p:outputLabel value="Status" /></b><br /><br />
+							<p:selectOneMenu value="#{projectView.project.isOpen}">
+								<f:selectItem itemValue="true" itemLabel="Open" />
+								<f:selectItem itemValue="false" itemLabel="Close" />
+							</p:selectOneMenu>
+						</div>
+						<br />
+
+						<b><h:outputText
+							value="Creator: "
+							rendered="#{projectView.project.createdBy != null}" /></b>
+						<h:outputText
+								value="#{projectView.project.createdBy.lastName}, #{projectView.project.createdBy.firstName}"
+								rendered="#{projectView.project.createdBy != null}" />
+						<br />
+						<br />
+						<b><h:outputText value="Created: "
+							rendered="#{projectView.project.created != null}"/></b>
+						<h:outputText value="#{projectView.project.created}"
+							rendered="#{projectView.project.created != null}">
+							<f:convertDateTime pattern="MM-dd-yyyy h:mm a" timeZone="CST" />
+						</h:outputText>
+						<br />
+						<br />
+						<b><h:outputText
+							value="Last Modified: "
+							rendered="#{projectView.project.modified != null}"/></b>
+						<h:outputText value="#{projectView.project.modified}"
+							rendered="#{projectView.project.modified != null}">
+							<f:convertDateTime pattern="MM-dd-yyyy h:mm a" timeZone="CST" />
+						</h:outputText>
+						<br /><br /><br /><br /><br />
+						<br /> <br /><br /><br /><br /><br /><br /><br /><br /><br />
+						<p:row>
+						<p:column styleClass="ui-grid-col-12">
+							<p:commandButton update="project_form" value="Create"
+								type="submit" rendered="#{!projectView.isEditMode}"
+								action="#{projectView.submitCreate}" styleClass="p-mr-2 p-mb-2"
+								style="width: auto" />
+							<h:outputText value="&#160;" />
+
+							<p:commandButton update="project_form" value="Update"
+								type="submit" rendered="#{projectView.isEditMode}"
+								action="#{projectView.submitUpdate}" styleClass="p-mr-2 p-mb-2"
+								style="width: auto" />
+							<h:outputText value="&#160;" />
+
+							<p:commandButton update="project_form" value="Delete"
+								type="submit" rendered="#{projectView.isEditMode}"
+								action="#{projectView.submitDelete}" styleClass="p-mr-2 p-mb-2"
+								style="width: auto" />
+							<h:outputText value="&#160;" />
+
+							<p:commandButton value="Cancel" type="submit"
+								action="#{projectView.submitCancel}" process="@this"
+								styleClass="p-mb-2" style="width: auto" />
+						</p:column>
+					</p:row>
+
+					</p:column>
+
+					
+
+				</p:panelGrid>
+			</div>
+		</h:form>
+		</p:card>
+
+	</ui:define>
+
+</ui:composition>

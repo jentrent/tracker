@@ -1,0 +1,233 @@
+<ui:composition template="/template/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<div class="card">
+
+			<h:form>
+			
+				<f:metadata>
+					<f:event type="preRenderView" listener="#{issueListView.init}"/>	
+				</f:metadata>
+
+				<p:dataTable 
+					var="issue" 
+					value="#{issueListView.issues}"
+					widgetVar="issuesTable"
+					filteredValue="#{issueListView.filteredIssues}"
+					globalFilterOnly="#{issueListView.globalFilterOnly}"
+					emptyMessage="No records found"
+					paginator="true" paginatorPosition="bottom" rows="10"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}	"
+					currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}">
+
+					<f:facet name="header">
+
+						<div class="p-d-flex p-ai-center p-jc-between">
+
+							<div>
+								<div class="ui-input-icon-left p-mr-12">
+									<p:commandButton value="My Issues"
+										action="#{issueListView.submitFilterForMyIssues}" type="submit"
+										styleClass="ui-button ui-button-flat"
+										onclick="javascript:alert('hello'))" />
+								</div>
+
+								<p:spacer width="10" />
+								<div class="ui-input-icon-left p-mr-12">
+									<p:commandButton value="Clear All"
+										action="#{issueListView.submitRemoveFilter}" 
+										type="submit"
+										styleClass="ui-button ui-button-flat" 
+										onclick="javascript:alert('hello'))"/>
+								</div>
+
+								<p:inputText id="globalFilter"
+									onkeyup="PF('issuesTable').filter()" style="width:10rem"
+									placeholder="Global search" />
+
+
+								<p:spacer width="675" />
+								
+								<p:commandButton value="Create Issue"
+									action="#{issueView.setEditModeForCreate}"
+									icon="pi pi-plus"
+									styleClass="ui-button-primary" />
+									
+									<!-- <p:dialog widgetVar="dialog" showEffect="fade" modal="true"
+										style="width:99% !important; height:99% !important;" closeOnEscape="true">
+										
+										<ui:insert name="dialog">
+											<ui:include src="/issue.xhtml" />
+										</ui:insert>							
+	
+									</p:dialog>
+ -->
+							</div>
+
+						</div>
+
+
+					</f:facet>
+
+
+					<p:column field="project" headerText="Project" style="width:200px">
+
+						<f:facet name="filter">
+
+							<p:selectOneMenu onchange="PF('issuesTable').filter()"
+								styleClass="custom-filter">
+
+								<f:selectItem itemLabel="All" itemValue="#{null}"
+									noSelectionOption="true" />
+
+								<f:selectItems value="#{issueListView.projects}" />
+
+							</p:selectOneMenu>
+
+						</f:facet>
+
+						<h:outputText style="vertical-align: middle; margin-left: .5rem"
+							value="#{issue.project.name}" />
+
+					</p:column>
+
+					<p:column headerText="Title" sortBy="#{issue.title}"
+						filterBy="#{issue.title}" style="width:175px">
+
+						<h:outputText value="#{issue.title}" />
+
+					</p:column>
+					
+					<p:column style="display: none" sortBy="#{issue.description}"
+						filterBy="#{issue.description}">
+
+					</p:column>
+
+					<p:column field="type" headerText="Type" filterMatchMode="exact"
+						filterBy="#{issue.type}">
+
+						<f:facet name="filter">
+
+							<p:selectOneMenu onchange="PF('issuesTable').filter()"
+								styleClass="custom-filter">
+
+								<f:selectItem itemLabel="All" itemValue="#{null}"
+									noSelectionOption="true" />
+
+								<f:selectItems value="#{issueListView.types}" />
+
+							</p:selectOneMenu>
+
+						</f:facet>
+
+						<h:outputText value="#{issue.type}" />
+
+					</p:column>
+
+					<p:column field="status" headerText="Status"
+						filterMatchMode="exact" filterBy="#{issue.status}">
+
+						<f:facet name="filter">
+
+							<p:selectOneMenu onchange="PF('issuesTable').filter()"
+								styleClass="custom-filter">
+
+								<f:selectItem itemLabel="All" itemValue="#{null}"
+									noSelectionOption="true" />
+
+								<f:selectItems value="#{issueListView.statuses}" />
+
+							</p:selectOneMenu>
+
+						</f:facet>
+
+						<h:outputText value="#{issue.status}" />
+
+					</p:column>
+
+					<p:column field="priority" headerText="Priority"
+						filterMatchMode="exact" filterBy="#{issue.priority}">
+
+						<f:facet name="filter">
+
+							<p:selectOneMenu onchange="PF('issuesTable').filter()"
+								styleClass="custom-filter">
+
+								<f:selectItem itemLabel="All" itemValue="#{null}"
+									noSelectionOption="true" />
+
+								<f:selectItems value="#{issueListView.priorities}" />
+
+							</p:selectOneMenu>
+
+						</f:facet>
+
+						<h:outputText value="#{issue.priority}"
+							style="font-weight:bold; #{issue.priority == 'LOW'? 'color: orange' : (issue.priority == 'MEDIUM' ? 'color: green' : 'color: red')}" />
+
+					</p:column>
+
+
+					<p:column headerText="Assignees">
+
+						<p:badge value="#{issue.assignees.size()}" styleClass="p-mr-2"
+							style="background-color: #ADD5FF; color: #2196f3">
+
+							<p:commandButton type="button" 
+								onclick="PF('assignees').show()"
+								icon="pi pi-user" styleClass="rounded-button ui-button-flat" />
+
+						</p:badge>
+
+						<p:dialog widgetVar="assignees" showEffect="fade" modal="true"
+							width="400" height="350">
+								
+							<p:dataTable var="assignee" value="#{issue.assignees}"
+								selectionMode="single" eflow="true"
+								rowKey="#{assignee.assigneeId}"
+								scrollable="true" 
+								scrollHeight="500">
+
+								<p:column headerText="Name">
+
+									<h:outputText
+										value="#{assignee.account.lastName}, #{assignee.account.firstName}" />
+
+								</p:column>
+
+								<p:column headerText="Role">
+
+									<h:outputText value="#{assignee.role.decodeToString()}" />
+
+								</p:column>
+
+							</p:dataTable>
+
+						</p:dialog>
+
+					</p:column>
+					
+
+					<p:column headerText="Actions">
+
+						<p:button value="Edit"
+							outcome="issue.xhtml?issueId=#{issue.issueId}"
+							styleClass="ui-button-primary" type="submit" />
+
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

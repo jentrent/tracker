@@ -1,0 +1,96 @@
+<ui:composition template="/template/page.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<h:form id="filter_form">
+
+			<p:dataTable var="account" value="#{accountListView.accounts}"
+					widgetVar="accountsTable"
+					filteredValue="#{accountListView.filteredAccounts}"
+					globalFilterOnly="#{accountListView.globalFilterOnly}"
+					emptyMessage="No accounts found with the given criteria"
+					paginator="true" paginatorPosition="bottom" rows="10"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}	"
+					currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}">
+
+				<f:facet name="header">
+
+				</f:facet>
+
+				<p:column headerText="Last Name"
+					filterBy="#{account.lastName}" style="width:175px">
+
+					<h:outputText value="#{account.lastName}" />
+
+				</p:column>
+
+				<p:column headerText="First Name"
+					filterBy="#{account.firstName}" style="width:175px">
+
+					<h:outputText value="#{account.firstName}" />
+
+				</p:column>
+
+				<p:column headerText="Email"
+					filterBy="#{account.firstName}" style="width:200px">
+
+					<h:outputText value="#{account.email}" />
+
+				</p:column>
+
+				<p:column field="role" headerText="Role" filterMatchMode="exact"
+					filterBy="#{account.role}">
+
+
+					<f:facet name="filter">
+
+						<p:selectOneMenu onchange="PF('accountsTable').filter()"
+							styleClass="custom-filter">
+
+							<f:selectItem itemLabel="All" itemValue="#{null}"
+								noSelectionOption="true" />
+
+							<f:selectItems value="#{accountListView.roles}" />
+
+						</p:selectOneMenu>
+
+					</f:facet>
+
+					<h:outputText value="#{account.role}" />
+
+				</p:column>
+
+				<p:column headerText="Projects" style="text-align: center">
+
+					<p:link 
+						style="font-weight:bold; text-decoration: underline" 
+						value="#{accountListView.getProjectCountForAccount(account.accountId)}"
+						outcome="projectList.xhtml?accountId=#{account.accountId}"
+						rendered="#{accountListView.getProjectCountForAccount(account.accountId) > 0}" />	
+
+
+				</p:column>
+
+				<p:column headerText="Issues" style="text-align: center">
+						
+					<p:link 
+						style="font-weight:bold; text-decoration: underline" 
+						value="#{accountListView.getIssueCountForAccount(account.accountId)}"
+						outcome="issueList.xhtml?accountId=#{account.accountId}"
+						rendered="#{accountListView.getIssueCountForAccount(account.accountId) > 0}" />	
+
+				</p:column>
+
+			</p:dataTable>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

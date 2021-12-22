@@ -1,0 +1,24 @@
+.ui-menubar {
+	border: 1px solid #aed0ea !important;
+	background: #74b2e2 url(../images/myImage.png) 50% 50% repeat-x
+		!important;
+	color: #ffffff !important;
+	font-weight: bolder !important;
+}
+
+body {
+	margin: 0;
+}
+
+.container {
+	width: 750px;
+	margin: 0 auto;
+}
+.sidebar {
+    width: 200px;
+    background: lightgrey;
+    float: left;
+    height: 100vh;
+}
+
+body{display:block !important} 
