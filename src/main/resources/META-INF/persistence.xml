@@ -3,10 +3,11 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-  <!-- Local setup -->
+<!--  Local setup -->
 	
 	<persistence-unit name="tracker_pu">
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+	
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -24,10 +25,11 @@
         </properties>
         
     </persistence-unit>
-     
-<!-- Heroku setup -->
 
-   <!--  <persistence-unit name="tracker_pu">
+     
+<!-- Heroku setup 
+
+    <persistence-unit name="tracker_pu">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
         <properties>
@@ -44,7 +46,8 @@
             <property name="hibernate.format_sql" value="false"/>
 
         </properties>
-    </persistence-unit> -->
-   
+    </persistence-unit>
+    
+-->
 
 </persistence>
