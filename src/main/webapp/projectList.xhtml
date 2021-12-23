@@ -33,21 +33,24 @@
 					<div class="p-d-flex p-ai-center p-jc-between">
 
 						<div>
+							<div class="ui-input-icon-left p-mr-12" style="width: 350px">
 							
-							<p:outputLabel value="Project List: Current filter #{projectListView.filterText}"
-									style="font-weight: bold; font-size:20px; font-style:oblique"/>
-								<p:spacer width="100" rendered="#{projectListView.filterText} != 'N/A'}"/>
-								<p:spacer width="445" rendered="#{projectListView.filterText} == 'N/A'}"/>
-							
-								<div class="ui-input-icon-left p-mr-12">
-									<p:commandButton value="My Projects"
-										action="#{projectListView.submitFilterForMyProjects}" 
-										type="submit"
-										styleClass="ui-button ui-button-flat"
-										onclick="javascript:alert('hello'))" />
-								</div>
+								<p:outputLabel image="ui-icon ui-icon-filter"/>
+								
+								<p:outputLabel value="#{projectListView.filterText}" style="ui-icon ui-icon-filter; font-size: 17; font-weight: bold"/>
+								
+							</div>
+
+							<div class="ui-input-icon-left p-mr-12">
+								<p:commandButton value="My Projects"
+									action="#{projectListView.submitFilterForMyProjects}" 
+									type="submit"
+									styleClass="ui-button ui-button-flat"
+									onclick="javascript:alert('hello'))" />
+							</div>
 							
 							<p:spacer width="10" />
+								
 							<div class="ui-input-icon-left p-mr-12">
 								<p:commandButton value="Clear All"
 									action="#{projectListView.submitRemoveFilter}" type="submit"

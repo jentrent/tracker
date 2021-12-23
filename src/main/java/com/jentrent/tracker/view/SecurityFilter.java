@@ -21,7 +21,7 @@ public class SecurityFilter implements Filter{
 
 		if(req.getSession().getAttribute("account") == null && !req.getPathInfo().equals(accountPage)){
 
-			RequestDispatcher dispatcher = req.getSession().getServletContext().getRequestDispatcher("/faces/login.xhtml");
+			RequestDispatcher dispatcher = req.getSession().getServletContext().getRequestDispatcher("/login.xhtml");
 			dispatcher.forward(request, response);
 
 		}else{
