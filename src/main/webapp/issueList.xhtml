@@ -31,6 +31,11 @@
 						<div class="p-d-flex p-ai-center p-jc-between">
 
 							<div>
+							
+								<p:outputLabel value="Issue List: Current filter #{issueListView.filterText}"
+									style="font-weight: bolder; font-size:20px; font-style:oblique; color:#2196f3"/>
+								<p:spacer width="465" />
+
 								<div class="ui-input-icon-left p-mr-12">
 									<p:commandButton value="My Issues"
 										action="#{issueListView.submitFilterForMyIssues}" type="submit"
@@ -52,7 +57,7 @@
 									placeholder="Global search" />
 
 
-								<p:spacer width="675" />
+								<!--  -->
 								
 								<p:commandButton value="Create Issue"
 									action="#{issueView.setEditModeForCreate}"

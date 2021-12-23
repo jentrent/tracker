@@ -75,6 +75,19 @@ public class ProjectListView extends BaseView implements Serializable{
 		}
 
 	}
+	// STILL WORKING LOOK AT ISSUE LIST FOR WORKINNG EXAMPLE
+//	public String getFilterText() {
+//
+//		if (getRequestParam("projectId") != null) {
+//
+//			Project project = projectService.readProject((Integer) getRequestParam("projectId"));
+//
+//			return "by Project " + project.getName();
+//		} else {
+//			return "N/A";
+//		}
+//
+//	}
 
 	public void refreshProjectList(){
 
