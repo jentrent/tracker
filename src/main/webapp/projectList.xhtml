@@ -34,6 +34,11 @@
 
 						<div>
 							
+							<p:outputLabel value="Project List: Current filter #{projectListView.filterText}"
+									style="font-weight: bold; font-size:20px; font-style:oblique"/>
+								<p:spacer width="100" rendered="#{projectListView.filterText} != 'N/A'}"/>
+								<p:spacer width="445" rendered="#{projectListView.filterText} == 'N/A'}"/>
+							
 								<div class="ui-input-icon-left p-mr-12">
 									<p:commandButton value="My Projects"
 										action="#{projectListView.submitFilterForMyProjects}" 
@@ -56,7 +61,6 @@
 								placeholder="Global search" />
 
 
-							<p:spacer width="550" />
 							<p:commandButton value="Create Project"
 								action="#{projectView.setEditModeForCreate}" icon="pi pi-plus"
 								styleClass="ui-button-primary" type="submit" />

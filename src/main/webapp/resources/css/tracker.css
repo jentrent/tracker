@@ -1,3 +1,10 @@
+.ui-menu .ui-menubar .ui-widget .ui-widget-content{
+	border: 1px solid #aed0ea !important;
+	background:#ffffff !important;
+	color: #ffffff !important;
+	font-weight: bolder !important;
+} 
+
 body {
 	margin: 0;
 }
