@@ -1,10 +1,9 @@
-.ui-menubar {
+.ui-menu .ui-menubar .ui-widget .ui-widget-content{
 	border: 1px solid #aed0ea !important;
-	background: #74b2e2 url(../images/myImage.png) 50% 50% repeat-x
-		!important;
+	background:#ffffff !important;
 	color: #ffffff !important;
 	font-weight: bolder !important;
-}
+} 
 
 body {
 	margin: 0;

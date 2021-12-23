@@ -36,6 +36,11 @@ body .ui-panelgrid .ui-panelgrid-cell {
 			</f:metadata>
 
 			<div class="card">
+			
+				<p:spacer width="15" />
+				<p:outputLabel value="Edit Issue: IS000#{issueView.issue.issueId}" 
+					style="font-weight:bolder; font-style:italic"
+					rendered="#{issueView.isEditMode}"/>
 
 				<p:panelGrid columns="3"
 					columnClasses="ui-grid-col-12,ui-grid-col-8,ui-grid-col-8"

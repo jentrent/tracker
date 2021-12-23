@@ -31,6 +31,12 @@
 						<div class="p-d-flex p-ai-center p-jc-between">
 
 							<div>
+							
+								<p:outputLabel value="Issue List: Current filter #{issueListView.filterText}"
+									style="font-weight: bold; font-size:20px; font-style:oblique"/>
+								<p:spacer width="257" rendered="#{issueListView.filterText != 'N/A'}"/>
+								<p:spacer width="445" rendered="#{issueListView.filterText == 'N/A'}"/>
+
 								<div class="ui-input-icon-left p-mr-12">
 									<p:commandButton value="My Issues"
 										action="#{issueListView.submitFilterForMyIssues}" type="submit"
@@ -52,22 +58,13 @@
 									placeholder="Global search" />
 
 
-								<p:spacer width="675" />
+								<!--  -->
 								
 								<p:commandButton value="Create Issue"
 									action="#{issueView.setEditModeForCreate}"
 									icon="pi pi-plus"
 									styleClass="ui-button-primary" />
 									
-									<!-- <p:dialog widgetVar="dialog" showEffect="fade" modal="true"
-										style="width:99% !important; height:99% !important;" closeOnEscape="true">
-										
-										<ui:insert name="dialog">
-											<ui:include src="/issue.xhtml" />
-										</ui:insert>							
-	
-									</p:dialog>
- -->
 							</div>
 
 						</div>

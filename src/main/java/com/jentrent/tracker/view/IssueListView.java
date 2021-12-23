@@ -24,7 +24,7 @@ import com.jentrent.tracker.service.ProjectService;
 
 @ManagedBean
 @SessionScoped
-public class IssueListView extends BaseView implements Serializable{
+public class IssueListView extends BaseView implements Serializable {
 
 	private IssueFilter filter;
 
@@ -44,7 +44,7 @@ public class IssueListView extends BaseView implements Serializable{
 	private ProjectService projectService;
 
 	@PostConstruct
-	public void init(){
+	public void init() {
 
 		super.init();
 
@@ -52,7 +52,7 @@ public class IssueListView extends BaseView implements Serializable{
 
 		filter = new IssueFilter();
 
-		if(getRequestParam("projectId") != null){
+		if (getRequestParam("projectId") != null) {
 
 			String projectId = (String) getRequestParam("projectId");
 
@@ -60,7 +60,7 @@ public class IssueListView extends BaseView implements Serializable{
 
 		}
 
-		if(getRequestParam("accountId") != null){
+		if (getRequestParam("accountId") != null) {
 
 			Integer accountId = Integer.parseInt((String) getRequestParam("accountId"));
 
@@ -74,7 +74,7 @@ public class IssueListView extends BaseView implements Serializable{
 
 	}
 
-	public String submitFilter(){
+	public String submitFilter() {
 
 		issues = issueService.listForFilter(filter);
 
@@ -82,7 +82,7 @@ public class IssueListView extends BaseView implements Serializable{
 
 	}
 
-	public String submitFilterForMyIssues(){
+	public String submitFilterForMyIssues() {
 
 		filter.setAssigneeAccountId(getAccount().getAccountId());
 		filter.setCreatedByAccountId(getAccount().getAccountId());
@@ -93,7 +93,7 @@ public class IssueListView extends BaseView implements Serializable{
 
 	}
 
-	public String submitRemoveFilter(){
+	public String submitRemoveFilter() {
 
 		issues = issueService.listIssuesForAll();
 		filter = new IssueFilter();
@@ -102,7 +102,7 @@ public class IssueListView extends BaseView implements Serializable{
 
 	}
 
-	public String setfilterByProjectId(Integer projectId){
+	public String setfilterByProjectId(Integer projectId) {
 
 		filter = new IssueFilter();
 
@@ -113,7 +113,7 @@ public class IssueListView extends BaseView implements Serializable{
 		return "issueList";
 	}
 
-	public String setfilterByAccountId(Integer accountId){
+	public String setfilterByAccountId(Integer accountId) {
 
 		filter = new IssueFilter();
 
@@ -124,36 +124,49 @@ public class IssueListView extends BaseView implements Serializable{
 		return "issueList";
 	}
 
-	public void toggleGlobalFilter(){
+	public String getFilterText() {
+
+		if (getRequestParam("accountId") != null) {
+
+			Account account = accountService.readAccount(Integer.parseInt((String) getRequestParam("accountId")));
+
+			return "by Account " + account.getFirstName() + " "+ account.getLastName();
+		} else {
+			return "N/A";
+		}
+
+	}
+
+	public void toggleGlobalFilter() {
 
 		setGlobalFilterOnly(!isGlobalFilterOnly());
 	}
 
-	public boolean isGlobalFilterOnly(){
+	public boolean isGlobalFilterOnly() {
 
 		return globalFilterOnly;
 	}
 
-	public void refreshIssueList(){
+	public void refreshIssueList() {
 
 		issues = issueService.listIssuesForAll();
 	}
 
-	public void setFilter(IssueFilter filter){
+	public void setFilter(IssueFilter filter) {
 
 		this.filter = filter;
 	}
 
-	public IssueFilter getFilter(){
+	public IssueFilter getFilter() {
 
 		return filter;
 	}
 
-	public List<Account> getAccountsFromAssignees(List<Assignee> assignees){
+	public List<Account> getAccountsFromAssignees(List<Assignee> assignees) {
 
 		List<Account> accounts = new LinkedList<Account>();
 
-		for(Assignee a: assignees){
+		for (Assignee a : assignees) {
 			Account account = accountService.readAccount(a.getAccount().getAccountId());
 			accounts.add(account);
 		}
@@ -161,51 +174,51 @@ public class IssueListView extends BaseView implements Serializable{
 		return accounts;
 	}
 
-	public List<Issue> getIssues(){
+	public List<Issue> getIssues() {
 
-		if(issues == null){
+		if (issues == null) {
 			issues = issueService.listIssuesForAll();
 		}
 
 		return issues;
 	}
 
-	public Type[] getTypes(){
+	public Type[] getTypes() {
 
 		return Type.values();
 	}
 
-	public Status[] getStatuses(){
+	public Status[] getStatuses() {
 
 		return Status.values();
 	}
 
-	public Priority[] getPriorities(){
+	public Priority[] getPriorities() {
 
 		return Priority.values();
 	}
 
-	public List<Issue> getFilteredIssues(){
+	public List<Issue> getFilteredIssues() {
 
 		return filteredIssues;
 	}
 
-	public List<Project> getProjects(){
+	public List<Project> getProjects() {
 
 		return projectService.listProjectsForAll();
 	}
 
-	public void setFilteredIssues(List<Issue> filteredIssues){
+	public void setFilteredIssues(List<Issue> filteredIssues) {
 
 		this.filteredIssues = filteredIssues;
 	}
 
-	public void setGlobalFilterOnly(boolean globalFilterOnly){
+	public void setGlobalFilterOnly(boolean globalFilterOnly) {
 
 		this.globalFilterOnly = globalFilterOnly;
 	}
 
-	public void setIssues(List<Issue> issues){
+	public void setIssues(List<Issue> issues) {
 
 		this.issues = issues;
 	}
