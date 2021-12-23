@@ -75,7 +75,7 @@ public class ProjectListView extends BaseView implements Serializable{
 		}
 
 	}
-	// STILL WORKING LOOK AT ISSUE LIST FOR WORKINNG EXAMPLE
+	
 	public String getFilterText() {
 
 		if (getRequestParam("accountId") != null) {
