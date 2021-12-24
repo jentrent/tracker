@@ -21,13 +21,13 @@ import com.jentrent.tracker.service.ProjectService;
 @SessionScoped
 public class ProjectListView extends BaseView implements Serializable{
 
-	private Boolean isMyAccountsOnly = Boolean.FALSE;
-
 	private List<Project> projects;
 
 	private boolean globalFilterOnly;
 
 	private List<Project> filteredProjects;
+
+	private Boolean isMyProjectsOnly = Boolean.FALSE;
 
 	@Autowired
 	private ProjectService projectService;
@@ -59,41 +59,36 @@ public class ProjectListView extends BaseView implements Serializable{
 
 	public String toggleIsMyAccountsOnly(){
 
-		isMyAccountsOnly = !isMyAccountsOnly;
+		isMyProjectsOnly = !isMyProjectsOnly;
 
 		refreshProjectList();
 
 		return "projectList";
 	}
 
-	public String getIsMyAccountsOnlyText(){
+	public String getFilterText(){
 
-		if(isMyAccountsOnly){
-			return "Show All Projects";
-		}else{
-			return "Only My Projects";
-		}
-
-	}
-	
-	public String getFilterText() {
-
-		if (getRequestParam("accountId") != null) {
+		if(getRequestParam("accountId") != null){
 
 			Account account = accountService.readAccount(Integer.parseInt((String) getRequestParam("accountId")));
 
-			return "by Account " + account.getFirstName() + " " + account.getLastName();
-		} else {
-			return "N/A";
+			return "Showing Projects for " + account.getFirstName() + " " + account.getLastName();
+
+		}else if(isMyProjectsOnly){
+
+			return "Showing Your Projects";
+		}else{
+
+			return "Showing All Projects";
 		}
 
 	}
 
 	public void refreshProjectList(){
 
-		if(isMyAccountsOnly){
+		if(isMyProjectsOnly){
 
-			projects = projectService.listProjectsForCreator(getAccount());
+			projects = projectService.listProjectsForAssignee(getAccount());
 
 		}else{
 
@@ -103,6 +98,8 @@ public class ProjectListView extends BaseView implements Serializable{
 	}
 
 	public String submitRemoveFilter(){
+
+		this.isMyProjectsOnly = Boolean.FALSE;
 
 		projects = projectService.listProjectsForAll();
 
@@ -142,6 +139,7 @@ public class ProjectListView extends BaseView implements Serializable{
 		projects = projectService.listProjectsForCreator(getAccount());
 
 		IssueFilter filter = new IssueFilter();
+
 		filter.setAssigneeAccountId(getAccount().getAccountId());
 
 		List<Issue> issues = issueService.listForFilter(filter);
@@ -150,6 +148,8 @@ public class ProjectListView extends BaseView implements Serializable{
 
 			projects.add(i.getProject());
 		}
+
+		this.isMyProjectsOnly = Boolean.TRUE;
 
 		return "projectList";
 

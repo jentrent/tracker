@@ -6,7 +6,7 @@
   metadata-complete="true">
 
 	<welcome-file-list>
-		<welcome-file>faces/login.xhtml</welcome-file>
+		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
