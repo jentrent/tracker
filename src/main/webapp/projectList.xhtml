@@ -33,13 +33,6 @@
 					<div class="p-d-flex p-ai-center p-jc-between">
 
 						<div>
-							<div class="ui-input-icon-left p-mr-12" style="width: 350px">
-							
-								<p:outputLabel image="ui-icon ui-icon-filter"/>
-								
-								<p:outputLabel value="#{projectListView.filterText}" style="ui-icon ui-icon-filter; font-size: 17; font-weight: bold"/>
-								
-							</div>
 
 							<div class="ui-input-icon-left p-mr-12">
 								<p:commandButton value="My Projects"
@@ -48,8 +41,6 @@
 									styleClass="ui-button ui-button-flat"
 									onclick="javascript:alert('hello'))" />
 							</div>
-							
-							<p:spacer width="10" />
 								
 							<div class="ui-input-icon-left p-mr-12">
 								<p:commandButton value="Clear All"
@@ -58,15 +49,26 @@
 									onclick="javascript:alert('hello'))"/>
 										
 							</div>
+							
+							<p:spacer width="20" />
 
 							<p:inputText id="globalFilter"
 								onkeyup="PF('projectsTable').filter()" style="width:10rem"
 								placeholder="Global search" />
 
-
+							<p:spacer width="20" />
+	
 							<p:commandButton value="Create Project"
 								action="#{projectView.setEditModeForCreate}" icon="pi pi-plus"
 								styleClass="ui-button-primary" type="submit" />
+								
+							<p:spacer width="30" />
+							
+							<div class="ui-input-icon-left p-mr-12">
+						
+								<p:outputLabel value="#{projectListView.filterText}" style="ui-icon ui-icon-filter; font-size: 17; font-weight: bold"/>
+								
+							</div>
 
 						</div>
 
