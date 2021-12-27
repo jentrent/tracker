@@ -57,66 +57,49 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 
 		EntityManager em = null;
 
+		issue.setModified(new Date());
+
+		em = getEm();
+
+		em.getTransaction().begin();
+
+		TypedQuery<Assignee> q1 = em.createQuery("select a from Assignee a where a.issue.issueId = :issueId", Assignee.class);
+		q1.setParameter("issueId", issue.getIssueId().intValue());
+
+		List<Assignee> existingAssignees = null;
+
 		try{
 
-			System.out.println("Assignees: " + issue.getAssignees().size());
+			existingAssignees = q1.getResultList();
 
-			issue.setModified(new Date());
+		}catch(Exception ignored){
+		}
 
-			em = getEm();
+		if(existingAssignees != null){
 
-			em.getTransaction().begin();
+			for(Assignee a: existingAssignees){
 
-			Query q1 = em.createQuery("select a from Assignee a where a.issue.issueId = :issueId", Assignee.class);
-			q1.setParameter("issueId", issue.getIssueId().intValue());
-
-			List<Assignee> existingAssignees = null;
-
-			try{
-
-				System.out.println("Retrieving existing assigees");
-				existingAssignees = q1.getResultList();
-
-			}catch(Exception ignored){
+				Query delete = em.createQuery("delete from Assignee a where a.assigneeId = :assigneeId");
+				delete.setParameter("assigneeId", a.getAssigneeId());
+				delete.executeUpdate();
 			}
-
-			if(existingAssignees != null){
-
-				for(Assignee a: existingAssignees){
-					System.out.println("Executing deletion of " + a.getAssigneeId() + ", " + a.getAccount());
-					Query delete = em.createQuery("delete from Assignee a where a.assigneeId = :assigneeId");
-					delete.setParameter("assigneeId", a.getAssigneeId());
-					delete.executeUpdate();
-				}
-
-			}
-
-			for(Assignee a: issue.getAssignees()){
-
-				System.out.println("Persisting assigneee account: " + a.getAccount().getEmail());
-
-				getEm().persist(a);
-			}
-
-			em.getTransaction().commit();
-
-			em.getTransaction().begin();
-
-			em.merge(issue);
-
-			System.out.println("Issue merged");
-
-			em.getTransaction().commit();
-
-			getEm().clear();
-
-		}catch(Exception e){
-			e.printStackTrace();
-			em.getTransaction().rollback();
-			throw e;
-		}finally{
 
 		}
+
+		for(Assignee a: issue.getAssignees()){
+
+			getEm().persist(a);
+		}
+
+		em.getTransaction().commit();
+
+		em.getTransaction().begin();
+
+		em.merge(issue);
+
+		em.getTransaction().commit();
+
+		getEm().clear();
 
 		return readIssue(issue.getIssueId());
 
