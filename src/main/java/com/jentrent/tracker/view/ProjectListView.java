@@ -7,6 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jentrent.tracker.model.Account;
@@ -153,6 +155,21 @@ public class ProjectListView extends BaseView implements Serializable{
 
 		return "projectList";
 
+	}
+	
+	public String descriptionSummary(Project p) {
+		
+		if(p.getDescription().length() > 30) {
+			
+			Document plain = Jsoup.parse(p.getDescription().substring(0,30));
+			
+			return  plain.body().text() + "...";
+		} else {
+			
+			Document plain = Jsoup.parse(p.getDescription());
+			
+			return  plain.body().text();
+		}
 	}
 
 	public List<Project> getFilteredProjects(){

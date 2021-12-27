@@ -32,12 +32,7 @@
 
 							<div>
 							
-								<p:outputLabel value="Your Filters: Current filter #{issueListView.filterText}"
-									style="font-weight: bold; font-size:20px; font-style:oblique"/>
-								<p:spacer width="257" rendered="#{issueListView.filterText != 'N/A'}"/>
-								<p:spacer width="445" rendered="#{issueListView.filterText == 'N/A'}"/>
-
-								<div class="ui-input-icon-left p-mr-12">
+							<div class="ui-input-icon-left p-mr-12">
 									<p:commandButton value="My Issues"
 										action="#{issueListView.submitFilterForMyIssues}" type="submit"
 										styleClass="ui-button ui-button-flat"
@@ -56,19 +51,19 @@
 								<p:inputText id="globalFilter"
 									onkeyup="PF('issuesTable').filter()" style="width:10rem"
 									placeholder="Global search" />
-
-
-								<!--  -->
+									
+								<p:chip label="#{issueListView.filterText}"  style="background-color: #fcfccc" icon="pi pi-filter" styleClass="p-mr-2"/>
 								
+								<div class="ui-input-icon-left p-mr-12" style="top: 75px; right: 120px; position: absolute">
 								<p:commandButton value="Create Issue"
 									action="#{issueView.setEditModeForCreate}"
 									icon="pi pi-plus"
 									styleClass="ui-button-primary" />
+								</div>
 									
 							</div>
 
 						</div>
-
 
 					</f:facet>
 

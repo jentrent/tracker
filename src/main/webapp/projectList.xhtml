@@ -57,19 +57,19 @@
 								placeholder="Global search" />
 
 							<p:spacer width="20" />
-	
-							<p:commandButton value="Create Project"
-								action="#{projectView.setEditModeForCreate}" icon="pi pi-plus"
-								styleClass="ui-button-primary" type="submit" />
+
+								<p:chip label="#{projectListView.filterText}"  style="background-color: #fcfccc" icon="pi pi-filter" styleClass="p-mr-2"/>
+								
+							
 								
 							<p:spacer width="30" />
 							
-							<div class="ui-input-icon-left p-mr-12">
-						
-								<p:outputLabel value="#{projectListView.filterText}" style="ui-icon ui-icon-filter; font-size: 17; font-weight: bold"/>
-								
+							<div class="ui-input-icon-left p-mr-12" style="top: 75px; right: 138px; position: absolute">
+							<p:commandButton value="Create Project"
+								action="#{projectView.setEditModeForCreate}" icon="pi pi-plus"
+								styleClass="ui-button-primary" type="submit" />
 							</div>
-
+							
 						</div>
 
 					</div>
@@ -80,16 +80,23 @@
 				<br />
 
 				<p:column headerText="Name" sortBy="#{project.name}"
-					filterBy="#{project.name}" style="width:200px">
+					filterBy="#{project.name}" style="width:250px">
 
 					<h:outputText value="#{project.name}" />
 
 				</p:column>
+				
+				<p:column headerText="Description" sortBy="#{project.description}"
+					filterBy="#{project.descriptionn}" style="width:250px">
+
+					<h:outputText value="#{projectListView.descriptionSummary(project)}" />
+
+				</p:column>
 
 				<p:column field="status" headerText="Status" sortBy="#{projectListView.decodeIsOpen(project)}"
-						filterMatchMode="exact" filterBy="#{projectListView.decodeIsOpen(project)}" style="width:175px">
+						filterMatchMode="exact" filterBy="#{projectListView.decodeIsOpen(project)}" >
 
-						<f:facet name="filter">
+						<f:facet name="filter" style="width:175px">
 
 							<p:selectOneMenu onchange="PF('projectsTable').filter()"
 								styleClass="custom-filter">

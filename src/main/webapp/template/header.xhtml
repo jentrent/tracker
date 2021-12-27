@@ -8,14 +8,6 @@
 	<h:form>
 			<p:menubar orientation="horizontal" autoDisplay="false" >
 		
-		<!--  
-				<p:menuitem
-					value="Issues" 
-					icon="pi pi-chart-bar" 
-					action="issueList" 
-					rendered="#{!headerView.currentPage.equals('issueList')}"/>
-		-->
-		
 				<p:menuitem 
 					value="Issues" 
 					icon="pi pi-chart-bar" 
@@ -27,7 +19,7 @@
 					icon="pi pi-chart-bar" 
 					action="issueList" 
 					rendered="#{headerView.currentPage.equals('issueList')}"
-					style="background-color: #ADD5FF"/>
+					style="background-color: #2794ed"/>
 
 				<p:menuitem 
 					value="Projects" 
@@ -40,7 +32,7 @@
 					icon="pi pi-briefcase" 	
 					action="projectList"
 					rendered="#{headerView.currentPage.equals('projectList')}"
-					style="background-color: #ADD5FF"/>
+					style="background-color: #2794ed"/>
 				
 				<p:menuitem 
 					value="Accounts"
@@ -53,7 +45,7 @@
 					icon="pi pi-users" 
 					action="accountList" 
 					rendered="#{headerView.currentPage.equals('accountList')}"
-					style="background-color: #ADD5FF"/>
+					style="background-color: #2794ed"/>
 				
 				<p:menuitem 
 					value="Settings" 
@@ -66,10 +58,10 @@
 					icon="pi pi-cog" 
 					action="#{accountView.setForEdit}"
 					rendered="#{headerView.currentPage.equals('account')}"
-					style="background-color: #ADD5FF"/>
+					style="background-color: #2794ed"/>
 				
 				<p:menuitem 
-						value="Log Out" 
+					value="Log Out" 
 					icon="pi pi-sign-out" 
 					action="#{loginView.logout}"/>
 
