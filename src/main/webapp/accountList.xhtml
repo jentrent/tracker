@@ -37,14 +37,15 @@
 				</p:column>
 
 				<p:column headerText="Email"
-					filterBy="#{account.firstName}" style="width:200px">
+					filterBy="#{account.firstName}" style="width:220px">
 
 					<h:outputText value="#{account.email}" />
 
 				</p:column>
 
 				<p:column field="role" headerText="Role" filterMatchMode="exact"
-					filterBy="#{account.role}">
+					filterBy="#{account.role}"
+					style="width:200px; align-content: center">
 
 
 					<f:facet name="filter">
@@ -65,7 +66,7 @@
 
 				</p:column>
 
-				<p:column headerText="Projects" style="text-align: center">
+				<p:column headerText="Projects" style="text-align: center; width:200px">
 
 					<p:link 
 						style="font-weight:bold; text-decoration: underline" 

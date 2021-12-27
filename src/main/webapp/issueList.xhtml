@@ -32,12 +32,7 @@
 
 							<div>
 							
-								<p:outputLabel value="Issue List: Current filter #{issueListView.filterText}"
-									style="font-weight: bold; font-size:20px; font-style:oblique"/>
-								<p:spacer width="257" rendered="#{issueListView.filterText != 'N/A'}"/>
-								<p:spacer width="445" rendered="#{issueListView.filterText == 'N/A'}"/>
-
-								<div class="ui-input-icon-left p-mr-12">
+							<div class="ui-input-icon-left p-mr-12">
 									<p:commandButton value="My Issues"
 										action="#{issueListView.submitFilterForMyIssues}" type="submit"
 										styleClass="ui-button ui-button-flat"
@@ -56,19 +51,19 @@
 								<p:inputText id="globalFilter"
 									onkeyup="PF('issuesTable').filter()" style="width:10rem"
 									placeholder="Global search" />
-
-
-								<!--  -->
+									
+								<p:chip label="#{issueListView.filterText}"  style="background-color: #fcfccc" icon="pi pi-filter" styleClass="p-mr-2"/>
 								
+								<div class="ui-input-icon-left p-mr-12" style="top: 75px; right: 120px; position: absolute">
 								<p:commandButton value="Create Issue"
 									action="#{issueView.setEditModeForCreate}"
 									icon="pi pi-plus"
 									styleClass="ui-button-primary" />
+								</div>
 									
 							</div>
 
 						</div>
-
 
 					</f:facet>
 
@@ -177,15 +172,13 @@
 							style="background-color: #ADD5FF; color: #2196f3">
 
 							<p:commandButton type="button" 
-								onclick="PF('assignees').show()"
+								onclick="PF('#{issue.issueId}').show()"
 								icon="pi pi-user" styleClass="rounded-button ui-button-flat" />
 
 						</p:badge>
 
-						<p:dialog widgetVar="assignees" showEffect="fade" modal="true"
+						<p:dialog widgetVar="#{issue.issueId}" showEffect="fade" modal="true"
 							width="400" height="350">
-								
-							<h:outputText value="#{issue.assignees.size()}"/>
 							
 							<p:dataTable 
 								var="assignee" value="#{issue.assignees}"

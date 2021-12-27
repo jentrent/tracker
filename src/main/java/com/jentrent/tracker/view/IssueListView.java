@@ -29,6 +29,8 @@ public class IssueListView extends BaseView implements Serializable {
 	private IssueFilter filter;
 
 	private boolean globalFilterOnly;
+	
+	private Boolean isMyIssuesOnly = Boolean.FALSE;
 
 	private List<Issue> issues;
 
@@ -88,6 +90,8 @@ public class IssueListView extends BaseView implements Serializable {
 		filter.setCreatedByAccountId(getAccount().getAccountId());
 
 		issues = issueService.listForFilter(filter);
+		
+		isMyIssuesOnly = Boolean.TRUE;
 
 		return "issueList";
 
@@ -97,6 +101,8 @@ public class IssueListView extends BaseView implements Serializable {
 
 		issues = issueService.listIssuesForAll();
 		filter = new IssueFilter();
+		
+		isMyIssuesOnly = Boolean.FALSE;
 
 		return "issueList";
 
@@ -123,16 +129,30 @@ public class IssueListView extends BaseView implements Serializable {
 
 		return "issueList";
 	}
+	
+	public String toggleIsMyAccountsOnly(){
+
+		isMyIssuesOnly = !isMyIssuesOnly;
+
+		refreshIssueList();
+
+		return "issueList";
+	}
 
 	public String getFilterText() {
-
-		if (getRequestParam("accountId") != null) {
+		
+		if(getRequestParam("accountId") != null){
 
 			Account account = accountService.readAccount(Integer.parseInt((String) getRequestParam("accountId")));
 
-			return "by Account " + account.getFirstName() + " "+ account.getLastName();
-		} else {
-			return "N/A";
+			return "Showing Issues for " + account.getFirstName() + " " + account.getLastName();
+
+		}else if(isMyIssuesOnly){
+
+			return "Showing Your Issues";
+		}else{
+
+			return "Showing All Issues";
 		}
 
 	}
