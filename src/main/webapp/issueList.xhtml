@@ -32,14 +32,15 @@
 
 							<div>
 							
-							<div class="ui-input-icon-left p-mr-12">
+								<div class="ui-input-icon-left p-mr-12">
 									<p:commandButton value="My Issues"
 										action="#{issueListView.submitFilterForMyIssues}" type="submit"
 										styleClass="ui-button ui-button-flat"
-										onclick="javascript:alert('hello'))" />
+										onclick="javascript:alert('hello'))"/>
 								</div>
 
 								<p:spacer width="10" />
+								
 								<div class="ui-input-icon-left p-mr-12">
 									<p:commandButton value="Clear All"
 										action="#{issueListView.submitRemoveFilter}" 
@@ -55,10 +56,11 @@
 								<p:chip label="#{issueListView.filterText}"  style="background-color: #fcfccc" icon="pi pi-filter" styleClass="p-mr-2"/>
 								
 								<div class="ui-input-icon-left p-mr-12" style="top: 75px; right: 120px; position: absolute">
-								<p:commandButton value="Create Issue"
-									action="#{issueView.setEditModeForCreate}"
-									icon="pi pi-plus"
-									styleClass="ui-button-primary" />
+								
+									<p:commandButton value="Create Issue"
+										action="#{issueView.setEditModeForCreate}"
+										icon="pi pi-plus"
+										styleClass="ui-button-primary" />
 								</div>
 									
 							</div>
@@ -101,8 +103,8 @@
 
 					</p:column>
 
-					<p:column field="type" headerText="Type" filterMatchMode="exact"
-						filterBy="#{issue.type}">
+					<p:column field="type" headerText="Type" filterMatchMode="exact" 
+						filterBy="#{issue.type}" width="175">
 
 						<f:facet name="filter">
 
@@ -123,7 +125,7 @@
 					</p:column>
 
 					<p:column field="status" headerText="Status"
-						filterMatchMode="exact" filterBy="#{issue.status}">
+						filterMatchMode="exact" filterBy="#{issue.status}" width="160">
 
 						<f:facet name="filter">
 
