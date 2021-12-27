@@ -38,6 +38,7 @@ public class IssueServiceTest extends BaseTest{
 	public void testCreateIssueWithInvalidData() throws TrackerException{
 
 		try{
+
 			getIssueService().createIssue(new Issue());
 
 		}catch(TrackerException e){

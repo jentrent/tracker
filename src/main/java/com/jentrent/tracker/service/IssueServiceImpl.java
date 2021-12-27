@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jentrent.tracker.dao.IssueDAO;
+import com.jentrent.tracker.dao.IssueDAOImpl;
 import com.jentrent.tracker.model.Account;
+import com.jentrent.tracker.model.Assignee;
 import com.jentrent.tracker.model.Issue;
 import com.jentrent.tracker.model.IssueFilter;
 import com.jentrent.tracker.model.Priority;
@@ -17,7 +19,7 @@ import com.jentrent.tracker.model.Status;
 public class IssueServiceImpl extends BaseService implements IssueService{
 
 	@Autowired
-	private IssueDAO issueDAO;
+	private IssueDAO issueDAO = new IssueDAOImpl();
 
 	public Issue createIssue(Issue issue) throws TrackerException{
 
@@ -52,6 +54,11 @@ public class IssueServiceImpl extends BaseService implements IssueService{
 		// checkForDuplicateIssue(issue);
 
 		return issueDAO.updateIssue(issue);
+	}
+
+	public Assignee replaceAssignee(Integer analystId, Integer accountId){
+
+		return issueDAO.replaceAssignee(analystId, accountId);
 	}
 
 	public void deleteIssue(Issue issue){

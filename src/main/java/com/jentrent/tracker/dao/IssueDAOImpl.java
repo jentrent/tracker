@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -43,7 +44,9 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 		q.setParameter("title", title);
 
 		try{
+
 			return (Issue) q.getSingleResult();
+
 		}catch(NoResultException ignored){
 			return null;
 		}
@@ -52,34 +55,71 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 
 	public Issue updateIssue(Issue issue){
 
-		issue.setModified(new Date());
+		EntityManager em = null;
 
-		beginTrx();
+		try{
 
-		if(issue.getAssignees() != null){
+			System.out.println("Assignees: " + issue.getAssignees().size());
 
-			List<Assignee> list = new LinkedList<Assignee>();
-			list.addAll(issue.getAssignees());
+			issue.setModified(new Date());
 
-			for(Assignee assignee: list){
+			em = getEm();
 
-				if(assignee.getAssigneeId() == null){
-					getEm().persist(assignee);
-				}else{
-					getEm().merge(assignee);
+			em.getTransaction().begin();
+
+			Query q1 = em.createQuery("select a from Assignee a where a.issue.issueId = :issueId", Assignee.class);
+			q1.setParameter("issueId", issue.getIssueId().intValue());
+
+			List<Assignee> existingAssignees = null;
+
+			try{
+
+				System.out.println("Retrieving existing assigees");
+				existingAssignees = q1.getResultList();
+
+			}catch(Exception ignored){
+			}
+
+			if(existingAssignees != null){
+
+				for(Assignee a: existingAssignees){
+					System.out.println("Executing deletion of " + a.getAssigneeId() + ", " + a.getAccount());
+					Query delete = em.createQuery("delete from Assignee a where a.assigneeId = :assigneeId");
+					delete.setParameter("assigneeId", a.getAssigneeId());
+					delete.executeUpdate();
 				}
 
 			}
 
-			issue.setAssignees(null);
+			for(Assignee a: issue.getAssignees()){
+
+				System.out.println("Persisting assigneee account: " + a.getAccount().getEmail());
+
+				getEm().persist(a);
+			}
+
+			em.getTransaction().commit();
+
+			em.getTransaction().begin();
+
+			em.merge(issue);
+
+			System.out.println("Issue merged");
+
+			em.getTransaction().commit();
+
+			getEm().clear();
+
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			throw e;
+		}finally{
 
 		}
 
-		getEm().merge(issue);
-
-		commitTrx();
-
 		return readIssue(issue.getIssueId());
+
 	}
 
 	public void deleteIssue(Issue issue){
@@ -101,6 +141,25 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 		q2.executeUpdate();
 
 		commitTrx();
+
+	}
+
+	public Assignee replaceAssignee(Integer analystId, Integer accountId){
+
+		beginTrx();
+
+		Query q1 = getEm().createQuery("update Assignee a set a.account_id = :accountId where a.analystId = :analystId");
+		q1.setParameter("analystId", analystId.intValue());
+		q1.setParameter("accountId", accountId.intValue());
+
+		q1.executeUpdate();
+
+		commitTrx();
+
+		TypedQuery<Assignee> q2 = getEm().createQuery("select Assignee a where a.analystId = :analystId", Assignee.class);
+		q1.setParameter("analystId", analystId.intValue());
+
+		return q2.getSingleResult();
 
 	}
 
@@ -204,27 +263,6 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 		}
 
 		return toReturn;
-	}
-
-	public static void main(String[] args){
-
-		IssueDAOImpl dao = new IssueDAOImpl();
-
-		Issue i = dao.readIssue(1);
-
-		List<Assignee> assignees = i.getAssignees();
-
-		System.out.println("assignees: " + assignees.size());
-
-		i.setTitle("New Title");
-
-		dao.updateIssue(i);
-
-		Issue updated = dao.readIssue(1);
-
-		System.out.println("updated: " + updated.getTitle());
-		System.out.println("assigneesU: " + updated.getAssignees());
-
 	}
 
 }

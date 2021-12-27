@@ -2,7 +2,6 @@ package com.jentrent.tracker.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -44,11 +43,10 @@ public class Assignee{
 	private Date modified;
 
 	@NotNull(message = "Issue cannot be empty")
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "ISSUE_ID", referencedColumnName = "ISSUE_ID")
 	private Issue issue;
 
-	@NotNull(message = "Assignee AccountView cannot be empty")
 	@ManyToOne
 	@JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ACCOUNT_ID")
 	private Account account;

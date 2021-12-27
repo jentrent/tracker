@@ -161,9 +161,12 @@ body .ui-panelgrid .ui-panelgrid-cell {
 						<div class="p-field p-col-12 p-md-3">
 							<b><h:outputLabel value="Analyst" /></b><br/><br/>
 							<p:selectOneMenu value="#{issueView.analystId}">
-								<f:selectItem itemLabel="Select"
-									itemValue="#{issueView.analystId}" />
-								<f:selectItems value="#{accountListView.accounts}" var="account"
+								<f:selectItem 
+									itemLabel="Not Set"
+									itemValue="#{null}" />
+								<f:selectItems
+									value="#{accountListView.accounts}" 
+									var="account"
 									itemValue="#{account.accountId}"
 									itemLabel="#{account.lastName}, #{account.firstName}" />
 							</p:selectOneMenu>
@@ -173,8 +176,9 @@ body .ui-panelgrid .ui-panelgrid-cell {
 						<div class="p-field p-col-12 p-md-3">
 							<b><h:outputLabel value="Developer" /></b><br/><br/>
 							<p:selectOneMenu value="#{issueView.developerId}">
-								<f:selectItem itemLabel="Select"
-									itemValue="#{issueView.developerId}" />
+								<f:selectItem 
+									itemLabel="Not Set"
+									itemValue="#{null}" />
 								<f:selectItems value="#{accountListView.accounts}" var="account"
 									itemValue="#{account.accountId}"
 									itemLabel="#{account.lastName}, #{account.firstName}" />
@@ -185,8 +189,9 @@ body .ui-panelgrid .ui-panelgrid-cell {
 						<div class="p-field p-col-12 p-md-3">
 							<b><h:outputLabel value="Tester" /></b><br/><br/>
 							<p:selectOneMenu value="#{issueView.testerId}">
-								<f:selectItem itemLabel="Select"
-									itemValue="#{issueView.testerId}" />
+								<f:selectItem 
+									itemLabel="Not Set"
+									itemValue="#{null}" />
 								<f:selectItems value="#{accountListView.accounts}" var="account"
 									itemValue="#{account.accountId}"
 									itemLabel="#{account.lastName}, #{account.firstName}" />
@@ -197,8 +202,9 @@ body .ui-panelgrid .ui-panelgrid-cell {
 						<div class="p-field p-col-12 p-md-3">
 							<b><h:outputLabel value="SysAdmin" /></b><br/><br/>
 							<p:selectOneMenu value="#{issueView.sysAdminId}">
-								<f:selectItem itemLabel="Select"
-									itemValue="#{issueView.sysAdminId}" />
+								<f:selectItem 
+									itemLabel="Not Set"
+									itemValue="#{null}" />
 								<f:selectItems value="#{accountListView.accounts}" var="account"
 									itemValue="#{account.accountId}"
 									itemLabel="#{account.lastName}, #{account.firstName}" />
@@ -209,7 +215,9 @@ body .ui-panelgrid .ui-panelgrid-cell {
 						<div class="p-field p-col-12 p-md-3">
 							<b><h:outputLabel value="PM" /></b><br/><br />
 							<p:selectOneMenu value="#{issueView.pMId}">
-								<f:selectItem itemLabel="Select" itemValue="#{issueView.pMId}" />
+								<f:selectItem 
+									itemLabel="Not Set"
+									itemValue="#{null}" />
 								<f:selectItems value="#{accountListView.accounts}" var="account"
 									itemValue="#{account.accountId}"
 									itemLabel="#{account.lastName}, #{account.firstName}" />

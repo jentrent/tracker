@@ -3,7 +3,6 @@ package com.jentrent.tracker.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +46,7 @@ public class Project implements Comparable<Project>{
 	@JoinColumn(name = "CREATED_BY", referencedColumnName = "ACCOUNT_ID")
 	private Account createdBy;
 
-	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "project")
 	private List<Issue> issues;
 
 	public Integer getProjectId(){

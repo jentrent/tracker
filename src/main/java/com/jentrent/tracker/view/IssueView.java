@@ -164,22 +164,28 @@ public class IssueView extends BaseView implements Serializable{
 
 	private void setAssignees(){
 
+		issue.setAssignees(null);
+
 		if(analystId != null){
+
 			Account analyst = accountService.readAccount(analystId);
 			issue.addAssignee(analyst, Role.ANALYST);
 		}
 
 		if(developerId != null){
+
 			Account developer = accountService.readAccount(developerId);
 			issue.addAssignee(developer, Role.DEVELOPER);
 		}
 
 		if(testerId != null){
+
 			Account tester = accountService.readAccount(testerId);
 			issue.addAssignee(tester, Role.TESTER);
 		}
 
 		if(sysAdminId != null){
+
 			Account sysAdmin = accountService.readAccount(sysAdminId);
 			issue.addAssignee(sysAdmin, Role.SYSADMIN);
 		}

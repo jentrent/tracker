@@ -3,7 +3,6 @@ package com.jentrent.tracker.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -61,10 +60,10 @@ public class Account{
 	@OneToMany(mappedBy = "createdBy")
 	private List<Project> projects;
 
-	@OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
 	private List<Issue> issues;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "account")
 	private List<Assignee> assignedTo;
 
 	public Integer getAccountId(){

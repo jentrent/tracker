@@ -185,12 +185,18 @@
 						<p:dialog widgetVar="assignees" showEffect="fade" modal="true"
 							width="400" height="350">
 								
-							<p:dataTable var="assignee" value="#{issue.assignees}"
-								selectionMode="single" eflow="true"
+							<h:outputText value="#{issue.assignees.size()}"/>
+							
+							<p:dataTable 
+								var="assignee" value="#{issue.assignees}"
+								selectionMode="single" 
+								eflow="true"
 								rowKey="#{assignee.assigneeId}"
 								scrollable="true" 
 								scrollHeight="500">
 
+								<h:outputText value="#{issue.assignees}"/>
+									
 								<p:column headerText="Name">
 
 									<h:outputText

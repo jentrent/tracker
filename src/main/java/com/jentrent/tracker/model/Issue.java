@@ -189,6 +189,10 @@ public class Issue{
 
 	public List<Assignee> getAssignees(){
 
+		if(assignees == null){
+			assignees = new LinkedList<Assignee>();
+		}
+
 		return assignees;
 	}
 
@@ -199,6 +203,10 @@ public class Issue{
 
 	public void addAssignee(Account account, Role role){
 
+		if(account == null){
+			throw new IllegalArgumentException("Account cannot be null when adding an Assignee");
+		}
+
 		if(assignees == null){
 			assignees = new LinkedList<Assignee>();
 		}
@@ -207,9 +215,12 @@ public class Issue{
 		assignee.setAccount(account);
 		assignee.setIssue(this);
 		assignee.setRole(role);
+
 		Date d = new Date();
 		assignee.setCreated(d);
 		assignee.setModified(d);
+
+		assignee.setIssue(this);
 
 		assignees.add(assignee);
 
