@@ -79,9 +79,9 @@ public class BaseView{
 
 		return session.getAttribute(name);
 	}
-	
-	protected FacesContext getFacesContext() {
-		
+
+	protected FacesContext getFacesContext(){
+
 		return facesContext;
 	}
 

@@ -125,6 +125,7 @@ public class AccountDAOImpl extends BaseDAO implements AccountDAO{
 
 		getEm().clear();
 
+		@SuppressWarnings("unchecked")
 		List<Object[]> results = getEm().createQuery(
 				"select a.account.accountId, count(a), count(distinct(a.issue.project)) AS total from Assignee as a group by a.account.accountId")
 				.getResultList();

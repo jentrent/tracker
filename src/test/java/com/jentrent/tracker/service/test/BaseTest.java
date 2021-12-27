@@ -4,9 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.security.auth.login.AccountException;
-
-import org.junit.BeforeClass;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jentrent.tracker.model.Account;
 import com.jentrent.tracker.model.Assignee;
@@ -17,29 +15,20 @@ import com.jentrent.tracker.model.Role;
 import com.jentrent.tracker.model.Status;
 import com.jentrent.tracker.model.Type;
 import com.jentrent.tracker.service.AccountService;
-import com.jentrent.tracker.service.AccountServiceImpl;
 import com.jentrent.tracker.service.IssueService;
-import com.jentrent.tracker.service.IssueServiceImpl;
 import com.jentrent.tracker.service.ProjectService;
-import com.jentrent.tracker.service.ProjectServiceImpl;
 import com.jentrent.tracker.service.TrackerException;
 
 public class BaseTest{
 
-	private static AccountService accountService;
+	@Autowired
+	private AccountService accountService;
 
-	private static IssueService issueService;
+	@Autowired
+	private IssueService issueService;
 
-	private static ProjectService projectService;
-
-	@BeforeClass
-	public static void setUp() throws AccountException{
-
-		accountService = new AccountServiceImpl();
-		issueService = new IssueServiceImpl();
-		projectService = new ProjectServiceImpl();
-
-	}
+	@Autowired
+	private ProjectService projectService;
 
 	protected AccountService getAccountService(){
 

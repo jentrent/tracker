@@ -8,11 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jentrent.tracker.model.Account;
 import com.jentrent.tracker.model.Project;
 import com.jentrent.tracker.service.TrackerException;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class ProjectServiceTest extends BaseTest{
 
 	@Test
@@ -87,19 +92,6 @@ public class ProjectServiceTest extends BaseTest{
 			}
 
 			assertTrue(found);
-		}
-
-	}
-
-	public static void main(String[] args){
-
-		ProjectServiceTest pst = new ProjectServiceTest();
-
-		try{
-			pst.setUp();
-			pst.testListProjectsForAll();
-		}catch(Exception e){
-			e.printStackTrace();
 		}
 
 	}
