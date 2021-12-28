@@ -5,7 +5,7 @@
 
 <!--  Local setup -->
 	
-	<persistence-unit name="tracker_pu">
+<!-- 	<persistence-unit name="tracker_pu">
 	
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
@@ -24,13 +24,13 @@
 
         </properties>
         
-    </persistence-unit>
+    </persistence-unit> -->
 
      
 <!-- Heroku setup -->
 
     <persistence-unit name="tracker_pu">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
