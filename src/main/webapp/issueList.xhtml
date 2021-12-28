@@ -51,7 +51,7 @@
 
 								<p:inputText id="globalFilter"
 									onkeyup="PF('issuesTable').filter()" style="width:10rem"
-									placeholder="Global search" />
+									placeholder="Global search" />		
 									
 								<p:chip label="#{issueListView.filterText}"  style="background-color: #fcfccc" icon="pi pi-filter" styleClass="p-mr-2"/>
 								
@@ -100,7 +100,10 @@
 					
 					<p:column style="display: none" sortBy="#{issue.description}"
 						filterBy="#{issue.description}">
-
+					</p:column>
+				
+					<p:column style="display: none" sortBy="#{issue.issueId.toString()}"
+						filterBy="#{issue.issueId.toString()}">
 					</p:column>
 
 					<p:column field="type" headerText="Type" filterMatchMode="exact" 
@@ -173,9 +176,10 @@
 						<p:badge value="#{issue.assignees.size()}" styleClass="p-mr-2"
 							style="background-color: #ADD5FF; color: #2196f3">
 
-							<p:commandButton type="button" 
+							<u><p:commandButton type="button" 
 								onclick="PF('#{issue.issueId}').show()"
 								icon="pi pi-user" styleClass="rounded-button ui-button-flat" />
+							</u>
 
 						</p:badge>
 

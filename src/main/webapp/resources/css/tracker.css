@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	display: block !important
 }
 
 .container {
@@ -12,8 +13,4 @@ body {
 	background: lightgrey;
 	float: left;
 	height: 100vh;
-}
-
-body {
-	display: block !important
 }

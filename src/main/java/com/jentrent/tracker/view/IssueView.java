@@ -27,8 +27,6 @@ import com.jentrent.tracker.service.TrackerException;
 @SessionScoped
 public class IssueView extends BaseView implements Serializable{
 
-	private Boolean isEditMode = Boolean.FALSE;
-
 	private Issue issue;
 
 	private Integer developerId;
@@ -42,6 +40,8 @@ public class IssueView extends BaseView implements Serializable{
 
 	@NotNull(message = "An issue must be assigned to a Project")
 	private Integer projectId;
+
+	private Boolean isEditMode = Boolean.FALSE;
 
 	@Autowired
 	private ProjectService projectService;
@@ -69,6 +69,20 @@ public class IssueView extends BaseView implements Serializable{
 			setEditModeForCreate();
 		}
 
+	}
+
+	public String setEditModeForCreate(){
+
+		issue = new Issue();
+		issue.setCreatedBy(getAccount());
+
+		projectId = null;
+
+		clearAssignees();
+
+		isEditMode = Boolean.FALSE;
+
+		return "issue";
 	}
 
 	public String setEditModeForUpdate(String issueId){
@@ -114,20 +128,6 @@ public class IssueView extends BaseView implements Serializable{
 		return "issue";
 	}
 
-	public String setEditModeForCreate(){
-
-		issue = new Issue();
-		issue.setCreatedBy(getAccount());
-
-		projectId = null;
-
-		clearAssignees();
-
-		isEditMode = Boolean.FALSE;
-
-		return "issue";
-	}
-
 	public String submitCreate(){
 
 		String page = "issueList";
@@ -154,6 +154,69 @@ public class IssueView extends BaseView implements Serializable{
 		clearAssignees();
 
 		return page;
+	}
+
+	public String submitUpdate(){
+
+		String page = "issueList";
+
+		try{
+
+			setProjectInIssue();
+
+			setAssignees();
+
+			issueService.updateIssue(issue);
+
+			refreshIssueList();
+
+		}catch(TrackerException e){
+
+			saveErrors(e);
+
+			page = "issue";
+		}
+
+		clearAssignees();
+
+		return page;
+	}
+
+	public String submitDelete(){
+
+		try{
+
+			issueService.deleteIssue(issue);
+
+			refreshIssueList();
+
+		}catch(RuntimeException e){
+
+			e.printStackTrace();
+		}
+
+		return "issueList";
+	}
+
+	public String submitCancel(){
+
+		try{
+			issue = null;
+			isEditMode = Boolean.FALSE;
+
+		}catch(RuntimeException e){
+			e.printStackTrace();
+		}
+
+		return "issueList";
+	}
+
+	private void refreshIssueList(){
+
+		IssueListView issueListView = (IssueListView) get("issueListView");
+
+		issueListView.refreshIssueList();
+
 	}
 
 	private void setProjectInIssue(){
@@ -237,61 +300,6 @@ public class IssueView extends BaseView implements Serializable{
 			issue.setDue(date);
 		}
 
-	}
-
-	public String submitUpdate(){
-
-		String page = "issueList";
-
-		try{
-
-			setProjectInIssue();
-
-			setAssignees();
-
-			issueService.updateIssue(issue);
-
-			refreshIssueList();
-
-		}catch(TrackerException e){
-
-			saveErrors(e);
-
-			page = "issue";
-		}
-
-		clearAssignees();
-
-		return page;
-	}
-
-	public String submitDelete(){
-
-		try{
-
-			issueService.deleteIssue(issue);
-
-			refreshIssueList();
-
-		}catch(RuntimeException e){
-
-			e.printStackTrace();
-		}
-
-		return "issueList";
-	}
-
-	public String submitCancel(){
-
-		try{
-			issue = null;
-			isEditMode = Boolean.FALSE;
-
-		}catch(RuntimeException e){
-			e.printStackTrace();
-		}
-
-		return "issueList";
 	}
 
 	public Issue getIssue(){
@@ -392,14 +400,6 @@ public class IssueView extends BaseView implements Serializable{
 	public void setDate(Date date){
 
 		this.date = date;
-	}
-
-	private void refreshIssueList(){
-
-		IssueListView issueListView = (IssueListView) get("issueListView");
-
-		issueListView.refreshIssueList();
-
 	}
 
 }
