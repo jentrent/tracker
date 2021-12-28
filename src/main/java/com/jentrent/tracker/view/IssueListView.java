@@ -150,6 +150,7 @@ public class IssueListView extends BaseView implements Serializable{
 		}else if(isMyIssuesOnly){
 
 			return "Showing Your Issues";
+
 		}else{
 
 			return "Showing All Issues";

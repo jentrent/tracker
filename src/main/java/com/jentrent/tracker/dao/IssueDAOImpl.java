@@ -25,6 +25,11 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 
 		getEm().persist(issue);
 
+		for(Assignee a: issue.getAssignees()){
+
+			getEm().persist(a);
+		}
+
 		commitTrx();
 
 		return issue;
@@ -124,25 +129,6 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 		q2.executeUpdate();
 
 		commitTrx();
-
-	}
-
-	public Assignee replaceAssignee(Integer analystId, Integer accountId){
-
-		beginTrx();
-
-		Query q1 = getEm().createQuery("update Assignee a set a.account_id = :accountId where a.analystId = :analystId");
-		q1.setParameter("analystId", analystId.intValue());
-		q1.setParameter("accountId", accountId.intValue());
-
-		q1.executeUpdate();
-
-		commitTrx();
-
-		TypedQuery<Assignee> q2 = getEm().createQuery("select Assignee a where a.analystId = :analystId", Assignee.class);
-		q1.setParameter("analystId", analystId.intValue());
-
-		return q2.getSingleResult();
 
 	}
 

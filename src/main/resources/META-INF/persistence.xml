@@ -27,7 +27,7 @@
     </persistence-unit>
 
      
-<!-- Heroku setup 
+<!-- Heroku setup -->
 
     <persistence-unit name="tracker_pu">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
@@ -47,7 +47,5 @@
 
         </properties>
     </persistence-unit>
-    
--->
 
 </persistence>
