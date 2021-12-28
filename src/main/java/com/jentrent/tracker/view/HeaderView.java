@@ -9,15 +9,15 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class HeaderView extends BaseView implements Serializable{
+public class HeaderView extends BaseView implements Serializable {
 
 	@PostConstruct
-	public void init(){
+	public void init() {
 
 		super.init();
 	}
 
-	public String getCurrentPage(){
+	public String getCurrentPage() {
 
 		String id = FacesContext.getCurrentInstance().getViewRoot().getViewId();
 

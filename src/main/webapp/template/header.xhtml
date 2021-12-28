@@ -5,6 +5,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+
+
+<!-- <style>
+   body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
+    
+    color: #f8f9fa;
+}
+
+ body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-text {
+
+    color: #f8f9fa;
+}
+</style> -->
+
 	<h:form>
 			<p:menubar orientation="horizontal" autoDisplay="false" > 
 		
@@ -19,7 +33,7 @@
 					icon="pi pi-chart-bar" 
 					action="issueList" 
 					rendered="#{headerView.currentPage.equals('issueList')}"
-					style="background-color: #2794ed"/>
+					style="background-color: #2794ed" />
 
 				<p:menuitem 
 					value="Projects" 
