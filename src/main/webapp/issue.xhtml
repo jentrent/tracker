@@ -38,8 +38,8 @@ body .ui-panelgrid .ui-panelgrid-cell {
 			<div class="card">
 			
 				<p:spacer width="15" />
-				<p:outputLabel value="Edit Issue: IS000#{issueView.issue.issueId}" 
-					style="font-weight: bold; font-size:20px; font-style:oblique"
+				<p:outputLabel value="Issue: IS00#{issueView.issue.issueId}" 
+					style="font-weight: bold; font-size:20px"
 					rendered="#{issueView.isEditMode}"/>
 
 				<p:panelGrid columns="3"
@@ -49,7 +49,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 					<p:column>
 						<div class="p-field p-col-12 p-md-3">
-							<b><p:outputLabel for="@next" value="Issue Title" /></b>
+							<b><p:outputLabel for="@next" value="Title" /></b>
 							
 							<br/><br/>
 							
@@ -126,11 +126,10 @@ body .ui-panelgrid .ui-panelgrid-cell {
 							<p:selectOneMenu value="#{issueView.issue.priority}">
 								<f:selectItem itemLabel="Select"
 									itemValue="#{issueView.issue.priority}" />
-								<f:selectItem itemValue="LOWEST" itemLabel="Lowest" />
 								<f:selectItem itemValue="LOW" itemLabel="Low" />
 								<f:selectItem itemValue="MEDIUM" itemLabel="Medium" />
 								<f:selectItem itemValue="HIGH" itemLabel="High" />
-								<f:selectItem itemValue="HIGHEST" itemLabel="Highest" />
+								<f:selectItem itemValue="CRITICAL" itemLabel="Critical" />
 							</p:selectOneMenu>
 						</div>
 						<br />
