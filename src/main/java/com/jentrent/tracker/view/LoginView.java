@@ -49,8 +49,10 @@ public class LoginView extends BaseView implements Serializable{
 			}
 
 		}catch(TrackerException e){
-			e.printStackTrace();
-			throw new RuntimeException(e);
+
+			saveErrors(e);
+
+			return "login";
 		}
 
 	}

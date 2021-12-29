@@ -15,6 +15,9 @@
 					 <p:graphicImage name="beetle.png" styleClass="logo" library="images" />
                      <h2>Log In To Your Account</h2>
                      <p>Don't have an account? <a href="accountCreate.xhtml">Create one here.</a></p><br/>
+                     
+                     <p:messages id="messages" closable="true"/>
+       		
                      <p:inputText id="email" value="#{loginView.email}" placeholder="Email" /><br/><br/>
                      <p:password id="password" value="#{loginView.password}" placeholder="Password" toggleMask="true" redisplay="true"
                      	style="width: 170px"/><br/><br/>

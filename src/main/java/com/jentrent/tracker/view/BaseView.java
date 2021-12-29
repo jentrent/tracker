@@ -17,15 +17,13 @@ import com.jentrent.tracker.service.TrackerException;
 
 public class BaseView{
 
-	private FacesContext facesContext;
 	private HttpSession session;
 
 	private Account account;
 
 	public BaseView(){
 
-		facesContext = FacesContext.getCurrentInstance();
-		session = (HttpSession) facesContext.getExternalContext().getSession(true);
+		session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 	}
 
 	@PostConstruct
@@ -55,9 +53,9 @@ public class BaseView{
 
 		for(String s: e.getErrors()){
 
-			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, e.getMessage(), null);
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null);
 
-			facesContext.addMessage("msg", facesMsg);
+			FacesContext.getCurrentInstance().addMessage("msg", facesMsg);
 		}
 
 	}
@@ -82,7 +80,7 @@ public class BaseView{
 
 	protected FacesContext getFacesContext(){
 
-		return facesContext;
+		return FacesContext.getCurrentInstance();
 	}
 
 }
