@@ -1,5 +1,6 @@
 package com.jentrent.tracker.model;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -192,6 +193,8 @@ public class Issue{
 		if(assignees == null){
 			assignees = new LinkedList<Assignee>();
 		}
+
+		Collections.sort(assignees, (a1, a2) -> a1.getRole().compareTo(a2.getRole()));
 
 		return assignees;
 	}
