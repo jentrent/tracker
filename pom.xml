@@ -131,7 +131,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.6.3.Final</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
@@ -156,8 +156,6 @@
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
-
-
 
 		<dependency>
 			<groupId>javax.el</groupId>
@@ -255,14 +253,18 @@
 				<version>3.3.2</version>
 			</plugin>
 
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.4.0</version>
 				<configuration>
+					<classpathScope>test</classpathScope>
 					<mainClass>com.jentrent.tracker.seed.DataSeeder</mainClass>
+					<arguments>
+						<argument>${session.executionRootDirectory}/src/test/resources/data</argument>
+					</arguments>
 				</configuration>
+
 			</plugin>
 
 		</plugins>

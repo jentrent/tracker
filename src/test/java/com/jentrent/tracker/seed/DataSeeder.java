@@ -4,11 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.jentrent.tracker.model.Account;
-import com.jentrent.tracker.model.Assignee;
 import com.jentrent.tracker.model.Issue;
 import com.jentrent.tracker.model.Priority;
 import com.jentrent.tracker.model.Project;
@@ -16,33 +17,40 @@ import com.jentrent.tracker.model.Role;
 import com.jentrent.tracker.model.Status;
 import com.jentrent.tracker.model.Type;
 import com.jentrent.tracker.service.AccountService;
-import com.jentrent.tracker.service.AccountServiceImpl;
 import com.jentrent.tracker.service.IssueService;
-import com.jentrent.tracker.service.IssueServiceImpl;
 import com.jentrent.tracker.service.ProjectService;
-import com.jentrent.tracker.service.ProjectServiceImpl;
 import com.jentrent.tracker.service.TrackerException;
 
 public class DataSeeder{
 
+	@Autowired
 	private AccountService accountService;
+
+	@Autowired
 	private IssueService issueService;
+
+	@Autowired
 	private ProjectService projectService;
 
-	private String rootDir = "/Users/khiggins/Dev/eclipse/tracker/src/main/resources/";
+	private File rootDir;
 
-	public DataSeeder(){
+	public DataSeeder(String rootDirectory){
 
-		accountService = new AccountServiceImpl();
-		issueService = new IssueServiceImpl();
-		projectService = new ProjectServiceImpl();
+		rootDir = new File(rootDirectory);
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/applicationContext.xml");
+
+		accountService = context.getBean("AccountService", AccountService.class);
+		issueService = context.getBean("IssueService", IssueService.class);
+		projectService = context.getBean("ProjectService", ProjectService.class);
 
 	}
 
 	private void run(){
 
 		try{
-			File f = new File(rootDir + "accounts.csv");
+
+			File f = new File(rootDir, "accounts.csv");
 
 			BufferedReader reader = new BufferedReader(new FileReader(f));
 
@@ -106,7 +114,7 @@ public class DataSeeder{
 
 			}
 
-			f = new File(rootDir + "issues.csv");
+			f = new File(rootDir, "issues.csv");
 
 			reader = new BufferedReader(new FileReader(f));
 
@@ -179,94 +187,11 @@ public class DataSeeder{
 
 	}
 
-	public Account createAccount() throws TrackerException{
-
-		String seed = Long.toString(System.currentTimeMillis());
-		Account account = new Account();
-		account.setEmail("TEST_" + seed + "@test.com");
-		account.setFirstName("firstName_" + seed);
-		account.setLastName("lastName_" + seed);
-		account.setPassword("pw_" + seed);
-		account.setRole(Role.PM);
-		account.setCreated(new Date());
-		account.setModified(new Date());
-		return account;
-
-	}
-
-	public Project createProject(Account account) throws TrackerException{
-
-		String seed = Long.toString(System.currentTimeMillis());
-		Project project = new Project();
-		project.setIsOpen(false);
-		project.setCreatedBy(account);
-		project.setName("TEST_" + seed + "_title");
-		project.setDescription(seed + "_Description");
-
-		project.setCreated(new Date());
-		project.setModified(new Date());
-
-		return projectService.createProject(project);
-	}
-
-	public Issue createIssue(Account account, Project project) throws TrackerException{
-
-		String seed = Long.toString(System.currentTimeMillis());
-		Issue issue = new Issue();
-		issue.setType(Type.BUG);
-		issue.setStatus(Status.CLOSED);
-		issue.setPriority(Priority.HIGH);
-		issue.setTitle("TEST_" + seed + "_title");
-		issue.setDescription(seed + "_Description");
-		issue.setCreatedBy(account);
-		issue.setCreated(new Date());
-		issue.setModified(new Date());
-
-		issue.setProject(project);
-
-		List<Assignee> assignees = new LinkedList<Assignee>();
-
-		for(int i = 0; i < 5; i++){
-
-			Assignee a = new Assignee();
-			a.setAccount(createAccount());
-
-			if(i == 0){
-				a.setRole(Role.DEVELOPER);
-			}
-
-			if(i == 1){
-				a.setRole(Role.ANALYST);
-			}
-
-			if(i == 2){
-				a.setRole(Role.TESTER);
-			}
-
-			if(i == 3){
-				a.setRole(Role.PM);
-			}
-
-			if(i == 4){
-				a.setRole(Role.SYSADMIN);
-			}
-
-			a.setIssue(issue);
-			a.setCreated(new Date());
-			a.setModified(new Date());
-			assignees.add(a);
-
-			issue.setAssignees(assignees);
-		}
-
-		return issue;
-
-	}
-
 	public static void main(String[] args){
 
-		DataSeeder ds = new DataSeeder();
-		ds.run();
+		DataSeeder dataSeeder = new DataSeeder(args[0]);
+
+		dataSeeder.run();
 	}
 
 }
