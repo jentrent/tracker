@@ -2,8 +2,6 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
-
-<!--  Local setup -->
 	
 	<persistence-unit name="tracker_pu">
 	
@@ -15,14 +13,14 @@
 		<class>com.jentrent.tracker.model.Project</class>
 		
         <properties>
+        
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/jtrent"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value=""/>
 
 			<property name="hibernate.default_schema" value="tracker"/>
-            <property name = "hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
-            <property name = "hibernate.enable_lazy_load_no_trans" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
 
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
@@ -32,7 +30,7 @@
     </persistence-unit>
 
      
-<!-- Heroku setup 
+<!-- 
 
     <persistence-unit name="tracker_pu">
     
@@ -44,19 +42,20 @@
 		<class>com.jentrent.tracker.model.Project</class>
 		
         <properties>
+        
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-34-235-110-253.compute-1.amazonaws.com:5432/dfsjnmkpvbbsip?sslmode=require&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
             <property name="javax.persistence.jdbc.user" value="myawabdvrojssz"/>
             <property name="javax.persistence.jdbc.password" value="f8e8a49e436a15d4d761a35dadf1c7107e856252673449f408fa0a1265ed26c4"/>
 
 			<property name="hibernate.default_schema" value="tracker"/>
-            <property name = "hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
-            <property name = "hibernate.enable_lazy_load_no_trans" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
 
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="false"/>
 
         </properties>
+        
     </persistence-unit>
     
 -->
