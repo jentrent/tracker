@@ -35,7 +35,6 @@ public class Account{
 	@Column(name = "LAST_NAME")
 	private String lastName;
 
-	@Size(min = 7, max = 50, message = "Email must be between 1 and 50 characters long")
 	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.(?:[a-zA-Z]{2,6})$", message = "Email is invalid")
 	@Column(name = "EMAIL")
 	private String email;
