@@ -20,7 +20,7 @@ public class BaseDAO{
 
 	protected EntityManager getEm(){
 
-		if(em == null){
+		if(em == null || !em.isOpen()){
 			em = emf.createEntityManager();
 		}
 

@@ -77,7 +77,8 @@ public class IssueDAOImpl extends BaseDAO implements IssueDAO{
 
 			existingAssignees = q1.getResultList();
 
-		}catch(Exception ignored){
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 
 		if(existingAssignees != null){

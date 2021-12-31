@@ -17,7 +17,9 @@
 }
 </style> -->
 
-	<h:form>
+	<div>
+
+		<h:form>
 			<p:menubar orientation="horizontal" autoDisplay="false" > 
 		
 				<p:menuitem 
@@ -32,7 +34,7 @@
 					action="issueList" 
 					rendered="#{headerView.currentPage.equals('issueList')}"
 					style="background-color: #2794ed" />
-
+	
 				<p:menuitem 
 					value="Projects" 
 					icon="pi pi-briefcase" 	
@@ -76,13 +78,32 @@
 					value="Log Out" 
 					icon="pi pi-sign-out" 
 					action="#{loginView.logout}"/>
+	
+				<f:facet name="options">
+		
+					<p:outputLabel value="Tracker" style="font-size: 3vh"/>
+					
+					<p:spacer width="5"/>
+					
+					<p:outputLabel value="v1.0" style="font-size: 2vh"/>
+					
+					<p:spacer width="20"/>
+					
+					<p:graphicImage 
+						name="beetle.png" 
+						library="images" 
+						width="30" 
+						height="30"
+						style="vertical-align: bottom"/>
+           
+           				<p:spacer width="70"/>
+           				
+				</f:facet>
 
 			</p:menubar>
-			
-			<h2>Tracker</h2>
-			 <p:graphicImage name="beetle.png" styleClass="logo" library="images" />
-                     
-                     
-     </h:form>
+			          
+     	</h:form>
+     
+     </div>
      
 </ui:composition>
