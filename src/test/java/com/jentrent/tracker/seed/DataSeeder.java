@@ -33,17 +33,17 @@ public class DataSeeder{
 	@Autowired
 	private ProjectService projectService;
 
-	private File rootDir;
+	private File dataDirectory;
 
 	private Logger log = Logger.getLogger(DataSeeder.class.getName());
 
-	public DataSeeder(String rootDirectory){
+	public DataSeeder(String dataDirectory){
 
 		log.info("DataSeeder starting...");
 
-		rootDir = new File(rootDirectory);
+		this.dataDirectory = new File(dataDirectory);
 
-		log.info("Loading data from " + rootDirectory);
+		log.info("Loading data from " + this.dataDirectory);
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/applicationContext.xml");
 
@@ -91,7 +91,7 @@ public class DataSeeder{
 
 		log.info("Running Accounts");
 
-		File f = new File(rootDir, "/accounts.csv");
+		File f = new File(dataDirectory, "/accounts.csv");
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
@@ -127,7 +127,7 @@ public class DataSeeder{
 
 		log.info("Running Projects");
 
-		File f = new File(rootDir + "/projects.csv");
+		File f = new File(dataDirectory + "/projects.csv");
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
@@ -171,7 +171,7 @@ public class DataSeeder{
 
 		log.info("Running Issues");
 
-		File f = new File(rootDir, "/issues.csv");
+		File f = new File(dataDirectory, "/issues.csv");
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
