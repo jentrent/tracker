@@ -90,7 +90,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 							<b><p:outputLabel value="Status" /></b><br /><br />
 							<p:selectOneMenu value="#{projectView.project.isOpen}">
 								<f:selectItem itemValue="true" itemLabel="Open" />
-								<f:selectItem itemValue="false" itemLabel="Close" />
+								<f:selectItem itemValue="false" itemLabel="Closed" />
 							</p:selectOneMenu>
 						</div>
 						<br />
@@ -131,13 +131,23 @@ body .ui-panelgrid .ui-panelgrid-cell {
 							<p:commandButton update="project_form" value="Update"
 								type="submit" rendered="#{projectView.isEditMode}"
 								action="#{projectView.submitUpdate}" styleClass="p-mr-2 p-mb-2"
-								style="width: auto" />
+								style="width: auto">
+								
+								<p:confirm header="Confirm Update" message="Update Project?" icon="pi pi-exclamation-triangle"/>
+   
+							</p:commandButton>
+							
 							<h:outputText value="&#160;" />
 
 							<p:commandButton update="project_form" value="Delete"
 								type="submit" rendered="#{projectView.isEditMode}"
 								action="#{projectView.submitDelete}" styleClass="p-mr-2 p-mb-2"
-								style="width: auto" />
+								style="width: auto">
+								
+								<p:confirm header="Confirm Delete" message="Delete Project?" icon="pi pi-exclamation-triangle"/>
+   
+							</p:commandButton>
+							
 							<h:outputText value="&#160;" />
 
 							<p:commandButton value="Cancel" type="submit"
@@ -148,7 +158,10 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 					</p:column>
 
-					
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+           				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            			<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+        			</p:confirmDialog>
 
 				</p:panelGrid>
 			</div>

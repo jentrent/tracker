@@ -184,6 +184,8 @@ public class IssueView extends BaseView implements Serializable{
 
 	public String submitDelete(){
 
+		System.out.println("submitDelete");
+
 		try{
 
 			issueService.deleteIssue(issue);

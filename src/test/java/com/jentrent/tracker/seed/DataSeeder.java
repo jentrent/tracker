@@ -99,8 +99,6 @@ public class DataSeeder{
 
 		while(line != null){
 
-			log.info(line);
-
 			String[] atts = line.split(",");
 
 			Account a = new Account();
@@ -115,6 +113,7 @@ public class DataSeeder{
 			accountService.createAccount(a);
 
 			log.info("Created account with email: " + a.getEmail());
+
 			line = reader.readLine();
 
 		}

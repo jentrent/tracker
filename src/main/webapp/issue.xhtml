@@ -24,7 +24,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 		
 		<h:form id="issue_form">
 		
-			<p:growl id="growl"/>
+			<p:growl id="growl" showDetail="true"/>
 			
        		<p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
 			
@@ -234,18 +234,34 @@ body .ui-panelgrid .ui-panelgrid-cell {
 							<p:commandButton update="issue_form" value="Update" type="submit"
 								rendered="#{issueView.isEditMode}"
 								action="#{issueView.submitUpdate}" styleClass="p-mr-2 p-mb-2"
-								style="width: auto" />
-							<h:outputText value="&#160;" />
+								style="width: auto">
+								
+								<p:confirm header="Confirm Update" message="Update Issue IS00#{issueView.issue.issueId}?" icon="pi pi-exclamation-triangle"/>
 
-							<p:commandButton update="issue_form" value="Delete" type="submit"
-								rendered="#{issueView.isEditMode}"
+							</p:commandButton>
+							
+							<h:outputText value="&#160;"/>
+        
+							<p:commandButton update="issue_form" value="Delete"
+								rendered="#{issueView.isEditMode}" type="submit"
 								action="#{issueView.submitDelete}" styleClass="p-mr-2 p-mb-2"
-								style="width: auto" />
+								style="width: auto">
+								
+           						 <p:confirm header="Confirm Delete" message="Delete Issue IS00#{issueView.issue.issueId}?" icon="pi pi-exclamation-triangle"/>
+           						 
+        					</p:commandButton>
+        					
 							<h:outputText value="&#160;" />
 
 							<p:commandButton value="Cancel" type="submit"
 								action="#{issueView.submitCancel}" process="@this"
 								styleClass="p-mb-2" style="width: auto" />
+								
+							<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+           					 	<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+        					</p:confirmDialog>
+        
 						</p:row>
 					</p:column>
 
