@@ -95,6 +95,8 @@ public class DataSeeder{
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
+		reader.readLine(); // Header
+
 		String line = reader.readLine();
 
 		while(line != null){
@@ -130,8 +132,9 @@ public class DataSeeder{
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
+		reader.readLine(); // Header
+
 		String line = reader.readLine();
-		line = reader.readLine();
 
 		int count = 0;
 
@@ -174,8 +177,9 @@ public class DataSeeder{
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
+		reader.readLine(); // Header
+
 		String line = reader.readLine();
-		line = reader.readLine();
 
 		while(line != null){
 

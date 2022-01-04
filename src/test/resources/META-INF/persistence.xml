@@ -30,7 +30,31 @@
     </persistence-unit>
 
 -->
+    <persistence-unit name="tracker_pu">
+    
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		
+		<class>com.jentrent.tracker.model.Account</class>
+		<class>com.jentrent.tracker.model.Assignee</class>
+		<class>com.jentrent.tracker.model.Issue</class>
+		<class>com.jentrent.tracker.model.Project</class>
+		
+        <properties>
+        
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-3-21-165-138.us-east-2.compute.amazonaws.com:5432/jentrentdb"/>
+            <property name="javax.persistence.jdbc.user" value="jentrent"/>
+            <property name="javax.persistence.jdbc.password" value="stinkie"/>
+			<property name="hibernate.default_schema" value="tracker"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
 
+        </properties>
+        
+    </persistence-unit>
+    
+<!--
     <persistence-unit name="tracker_pu">
     
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
@@ -56,5 +80,7 @@
         </properties>
         
     </persistence-unit>
+
+-->
 
 </persistence>
