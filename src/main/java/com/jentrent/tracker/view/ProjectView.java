@@ -30,6 +30,15 @@ public class ProjectView extends BaseView implements Serializable{
 		if(getRequestParam("projectId") != null){
 
 			String projectId = (String) getRequestParam("projectId");
+
+			setEditModeForUpdate(projectId);
+
+		}else if(get("projectId") != null){
+
+			String projectId = (String) get("projectId");
+
+			set("projectId", null);
+
 			setEditModeForUpdate(projectId);
 
 		}else{
@@ -94,6 +103,15 @@ public class ProjectView extends BaseView implements Serializable{
 	public String submitDelete(){
 
 		try{
+
+			if(project.getIssues() != null && project.getIssues().size() > 0){
+
+				saveError("Project cannot be deleted, as it has Issues.\nYou can only 'Close' the Project");
+
+				set("projectId", project.getProjectId().toString());
+
+				return "project";
+			}
 
 			projectService.deleteProject(project);
 
