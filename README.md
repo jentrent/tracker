@@ -1,4 +1,3 @@
-
 <div style="display: flex; align-items: center; flex-direction: row;">
 	<a href="http://jentrent.com/tracker" target="_blank">
 	  <img src="src/main/webapp/resources/images/beetle.png" 
@@ -10,46 +9,42 @@
 <a href="#key-features">Demo</a> •
 <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> 
 
----
 ## Table of Contents
-- [Introduction](#introduction)
 - [Description](#description)
-	- [Features](#features)
-	- [Database Design](#database-design)
-	- [MVC Structure](#mvc-structure)
 - [Technologies](#technologies)
-    - [Built With](#built-with)
-    - [Why](#why)
 - [Future Features](#future-features)
 - [Author](#author)
-    - [Socials](#socials)
 
-## Introduction
-**Tracker** is a full-stack Java web app for managing IT/software issues/bugs.
 
 ## Description
+**Tracker** is a full-stack Java web app for managing IT/software issues and bugs. It's built on Java/JavaEE, JSF/Primefaces,
+Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) approach to web apps was well as other well-established object-oriented design patterns.
 
+### Features
 
-## Technologies
+### Technologies
+- Back-end: Java/JEE, JPA/Hibernate/JDBC/SQL, Spring, JUnit
+- Front End: JSF, JSTL, PrimeFaces, HTML, CSS
+- Default app server: Tomcat
+- Default DB server: PostgreSQL, Oracle
 
 
 ## Future Features
 
-- Functionalities
-	- Comments/note
-	- Email Notification	
-- Further Rest API configurations.
-- Styling updates.
+- Ability to add notes to an issue, including screenprints and updates
+- Email notifications for assigned issues and issue status changes
+- Rest API for all entity CRUD operations
+- Web look-and-feel updates, including improved styling
+
+## Author
+
+Jennifer Trent
 
 <a href="http://jentrent.com" target="_blank">Website</a>
 
-<div style="display: flex; align-items: center; flex-direction: row;">
-
-<a href="https://github.com/jentrent12" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/></a>&nbsp;&nbsp;
-
-<a href="https://www.linkedin.com/in/jenniferltrent" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>&nbsp;&nbsp;
-
-<a href="mailto:Jltrent12@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+[![Follow me on GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jentrent12) 
+[![Follow me on LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jenniferltrent/)
+[![Email me](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Jltrent12@gmail.com)
 
 </div>
 
