@@ -68,9 +68,7 @@ There are a number of future features that will be added to Tracker, including t
 
 ## Author
 
-Jennifer Trent
-
-<a href="http://jentrent.com" target="_blank">Website</a>
+Jennifer Trent (<a href="http://jentrent.com" target="_blank">My Website</a>)
 
 [![Follow me on GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jentrent) 
 [![Follow me on LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jenniferltrent/)
