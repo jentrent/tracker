@@ -48,9 +48,9 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 
 ### Setup
 1. Create a postgres user account for DB access. 
-2. Log into postgres and run the Tracker DB `[tracker_create.sql]`(src/main/resources/sql/tracker_create.sql)
-3. Add the DB account/pw to the Test `[persistence.xml]`(src/test/resources/META-INF/persistence.xml)
-4. Add the DB account/pw to the main deployment `[persistence.xml] `(src/main/resources/META-INF/persistence.xml)
+2. Log into postgres and run the Tracker DB [`tracker_create.sql`](src/main/resources/sql/tracker_create.sql)
+3. Add the DB account/pw to the Test [`persistence.xml`](src/test/resources/META-INF/persistence.xml)
+4. Add the DB account/pw to the main deployment [`persistence.xml`](src/main/resources/META-INF/persistence.xml)
 5. Build the application using `mvn clean install`
 
 The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected.
