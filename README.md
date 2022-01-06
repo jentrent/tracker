@@ -9,14 +9,20 @@
 - [Description](#description)
 - [Technologies](#technologies)
 - [Future Features](#future-features)
-- [Author](#author)
-
 
 ## Description
 **Tracker** is a full-stack Java web app for managing IT/software issues and bugs. It's built on Java/JavaEE, JSF/Primefaces,
-Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) approach to web apps was well as other well-established object-oriented design patterns.
+Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) approach to web apps as well as other well-established object-oriented design patterns.
 
 ### Features
+Tracker was inspired by various well-known issue/bug management software, including Jira.  As such, the app includes the basic tracking features needed to group and manage issues/bugs through an established workflow.  The basic features included the following:
+- Create, update, delete an issue/bug
+- Assign issues/bugs to various team members with map to the SDLC workflow
+- Manage and issue/bug through the SDLC workflow
+- Create, update, delete a project
+- Create, update, delete an account
+- List and filter issues/bugs with various criteria
+- List and filter projects with various criteria
 
 ### Technologies
 - Back-end: Java/JEE, JPA/Hibernate/JDBC/SQL, Spring, JUnit
