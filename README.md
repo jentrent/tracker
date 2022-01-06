@@ -17,7 +17,7 @@
 - [Author](#author)
 
 ## Description
-**Tracker** is a full-stack Java web app for managing IT/software issues and bugs. It's built on Java/JavaEE, JSF/Primefaces,
+**Tracker** is a full-stack Java web app for managing IT/software issues and bugs. It's built on Java/JEE, JSF/Primefaces,
 Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) approach to web apps as well as other well-established object-oriented design patterns.
 
 ### Features
@@ -48,22 +48,23 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 
 ### Setup
 1. Create a postgres user account for DB access. 
-2. Log into postgres and run the Tracker DB [`tracker_create.sql`](src/main/resources/sql/tracker_create.sql)
+2. Log into postgres and run the Tracker DB create script [`tracker_create.sql`](src/main/resources/sql/tracker_create.sql)
 3. Add the DB account/pw to the Test [`persistence.xml`](src/test/resources/META-INF/persistence.xml)
 4. Add the DB account/pw to the main deployment [`persistence.xml`](src/main/resources/META-INF/persistence.xml)
 5. Build the application using `mvn clean install`
+6. Deploy the `target/tracker-1.0.war' to your app server.
 
-The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected.
+The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected. To skip the tests, add the following to the maven build command:  `-Dmaven.test.skip=true`
 
 ### Data Seeder
-A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided with loads the DB with the appropriate data (Issues, Projects, Accounts) to enable the viewing and use of Tracker for evaluation purposes. To run the process, using the following: `mvn exec:java'
+A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads the DB with the appropriate data (Issues, Projects, Accounts) to enable the viewing and use of Tracker for evaluation purposes. To run the process, using the following: `mvn exec:java`
 
 ## Future Features
-
+There are a number of future features that will be added to Tracker, including the following:
 - Ability to add notes to an issue, including screenprints and updates
-- Email notifications for assigned issues and issue status changes
+- Email notifications for assigned issues and tracking status changes
 - Rest API for all entity CRUD operations
-- Web look-and-feel updates, including improved styling
+- Web look-and-feel updates, including styling
 
 ## Author
 
