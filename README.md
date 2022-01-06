@@ -1,6 +1,6 @@
 <img src="readme_assets/tracker_readme.jpg" 
 	 alt="Tracker" 
-	 width="150" height="50">
+	 width="150" height="45">
 	 
 <a href="#key-features">Demo</a> •
 <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> 
