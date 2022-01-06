@@ -1,10 +1,7 @@
-<div style="display: flex; align-items: center; flex-direction: row;">
-	<a href="http://jentrent.com/tracker" target="_blank">
-	  <img src="src/main/webapp/resources/images/beetle.png" 
-	       alt="Tracker" 
-	       width="40" height="40"></a>&nbsp;&nbsp;
-	<h2 style="border:none !important;">Tracker</h2>
-</div>
+<img src="readme_assets/tracker_readme.jpg" 
+	 alt="Tracker" 
+	 width="150" height="50">
+
 
 <a href="#key-features">Demo</a> •
 <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> 
