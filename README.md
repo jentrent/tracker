@@ -41,12 +41,21 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 
 ### Dependencies
 
-### Setup
+- Java 8 or higher
+- Maven
+- Java web app server
+- PostgreSQL database server
 
-Complete [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) are provide to verify the setup is working as expected.
+### Setup
+1. Create a postgres user account for DB access. 
+2. Log into postgres and run the Tracker DB `[tracker_create.sql]`(src/main/resources/sql/tracker_create.sql)
+3. Add the DB account/pw to the Test `[persistence.xml]`(src/test/resources/META-INF/persistence.xml)
+4. Add the DB account/pw to the main deployment `[persistence.xml] `(src/main/resources/META-INF/persistence.xml)
+5. Build the application using `mvn clean install`
+
+The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected.
 
 ### Data Seeder
-
 
 
 ## Future Features
@@ -62,7 +71,7 @@ Jennifer Trent
 
 <a href="http://jentrent.com" target="_blank">Website</a>
 
-[![Follow me on GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jentrent12) 
+[![Follow me on GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jentrent) 
 [![Follow me on LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jenniferltrent/)
 [![Email me](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Jltrent12@gmail.com)
 
