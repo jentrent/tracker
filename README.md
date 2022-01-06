@@ -56,7 +56,7 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected.
 
 ### Data Seeder
-
+A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided with loads the DB with the appropriate data (Issues, Projects, Accounts) to enable the viewing and use of Tracker for evaluation purposes. To run the process, using the following: `mvn exec:java'
 
 ## Future Features
 
