@@ -1,7 +1,7 @@
 <img src="readme.jpg" width="165" height="55">
 	 
 <a href="#key-features">Video Demo</a> •
-<a href="http://jentrent.com/tracker" target="_blank">Live Site</a> 
+<a href="http://jentrent.com/tracker" target="_blank">Live Site - Try it Yourself!</a> 
 
 ## Table of Contents
 - [Description](#description)
@@ -15,7 +15,7 @@
 - [Author](#author)
 
 ## Description
-**Tracker** is a full-stack Java web application for managing IT/software issues and bugs. It's built on Java/JEE, JSF/Primefaces, Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) approach to web apps as well as other well-established object-oriented design patterns.
+**Tracker** is a full-stack, Java web application for managing IT/software issues and bugs. It's built on Java/JEE, JSF/Primefaces, Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) pattern as well as other well-established object-oriented design patterns.
 
 ### Features
 Tracker was inspired by various well-known issue/bug management software. As such, Tracker includes the basic tracking features needed to group, assign, and manage issues/bugs through an established software development lifecylce (SDLC) workflow.  It's key features include the following:
@@ -34,7 +34,7 @@ Tracker was inspired by various well-known issue/bug management software. As suc
 - Default DB server: PostgreSQL
 
 ## Install and Run
-There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com/tracker" target="_blank">Live Site</a>. To setup and run the project yourself, use the following:
+There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> for you to try it out. If you would like to setup and run the project yourself, please use the secton below.
 
 ### Dependencies
 
