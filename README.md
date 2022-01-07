@@ -1,6 +1,4 @@
-<img src="readme_assets/tracker_readme.jpg" 
-	 alt="Tracker" 
-	 width="150" height="45">
+<img src="readme.jpg" width="165" height="55">
 	 
 <a href="#key-features">Video Demo</a> •
 <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> 
@@ -46,12 +44,12 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 - PostgreSQL database server
 
 ### Setup
-1. Create a postgres user account for DB access. 
+1. Create a postgres user account for DB access 
 2. Log into postgres and run the Tracker DB create script [`tracker_create.sql`](src/main/resources/sql/tracker_create.sql)
 3. Add the DB account/pw to the Test [`persistence.xml`](src/test/resources/META-INF/persistence.xml)
 4. Add the DB account/pw to the main deployment [`persistence.xml`](src/main/resources/META-INF/persistence.xml)
 5. Build the application using the command: `mvn clean install`
-6. Deploy the `target/tracker-1.0.war` to your app server.
+6. Deploy the `target/tracker-1.0.war` to your app server
 
 The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected. To skip the tests, add the following to the maven build command:  `-Dmaven.test.skip=true`
 
