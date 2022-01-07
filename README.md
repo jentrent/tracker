@@ -17,8 +17,7 @@
 - [Author](#author)
 
 ## Description
-**Tracker** is a full-stack Java web app for managing IT/software issues and bugs. It's built on Java/JEE, JSF/Primefaces,
-Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) approach to web apps as well as other well-established object-oriented design patterns.
+**Tracker** is a full-stack Java web application for managing IT/software issues and bugs. It's built on Java/JEE, JSF/Primefaces, Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) approach to web apps as well as other well-established object-oriented design patterns.
 
 ### Features
 Tracker was inspired by various well-known issue/bug management software. As such, Tracker includes the basic tracking features needed to group, assign, and manage issues/bugs through an established software development lifecylce (SDLC) workflow.  It's key features include the following:
@@ -51,13 +50,13 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 2. Log into postgres and run the Tracker DB create script [`tracker_create.sql`](src/main/resources/sql/tracker_create.sql)
 3. Add the DB account/pw to the Test [`persistence.xml`](src/test/resources/META-INF/persistence.xml)
 4. Add the DB account/pw to the main deployment [`persistence.xml`](src/main/resources/META-INF/persistence.xml)
-5. Build the application using `mvn clean install`
-6. Deploy the `target/tracker-1.0.war' to your app server.
+5. Build the application using the command: `mvn clean install`
+6. Deploy the `target/tracker-1.0.war` to your app server.
 
 The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected. To skip the tests, add the following to the maven build command:  `-Dmaven.test.skip=true`
 
 ### Data Seeder
-A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads your DB with the appropriate [data](src/test/resources/data) (Issues, Projects, Accounts) to enable the viewing and use of Tracker for evaluation purposes. To run the process, using the following: `mvn exec:java`
+A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads your DB with the appropriate [data](src/test/resources/data) (accounts, issues, projects) to enable the viewing and use of Tracker for evaluation purposes. To run the data seed process, execute the following: `mvn exec:java`
 
 ## Future Features
 There are a number of future features that will be added to Tracker, including the following:
