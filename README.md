@@ -34,7 +34,7 @@ Tracker was inspired by various well-known issue/bug management software. As suc
 - Default DB server: PostgreSQL
 
 ## Install and Run
-There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> for you to try it out. If you would like to setup and run the project yourself, please use the secton below.
+There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> for you to try it out. Or, if you would like to setup and run the project yourself, please use the section below.
 
 ### Dependencies
 
@@ -51,10 +51,10 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 5. Build the application using the command: `mvn clean install`
 6. Deploy the `target/tracker-1.0.war` to your app server
 
-The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected. To skip the tests, add the following to the maven build command:  `-Dmaven.test.skip=true`
+The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected. To skip these tests, add the following to the maven build command:  `-Dmaven.test.skip=true`
 
 ### Data Seeder
-A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads your DB with the appropriate [data](src/test/resources/data) (accounts, issues, projects) to enable the viewing and use of Tracker for evaluation purposes. To run the data seed process, execute the following: `mvn exec:java`
+A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads your DB with the appropriate sample [data](src/test/resources/data) (accounts, issues, projects) to enable the viewing and use of Tracker for demo and evaluation purposes. To run this data seed process, execute the following maven command: `mvn exec:java`
 
 ## Future Features
 There are a number of future features that will be added to Tracker, including the following:
