@@ -9,7 +9,7 @@
 - [Description](#description)
 	- [Features](#features)
 	- [Technologies](#technologies)
-- [Install](#install)
+- [Install and Run](#install-and-run)
 	- [Dependencies](#dependencies)
 	- [Setup](#setup)
 	- [Data Seeder](#data-seeder)
@@ -36,7 +36,7 @@ Tracker was inspired by various well-known issue/bug management software. As suc
 - Default app server: Tomcat
 - Default DB server: PostgreSQL
 
-## Install
+## Install and Run
 There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com/tracker" target="_blank">Live Site</a>. To setup and run the project yourself, use the following:
 
 ### Dependencies
@@ -57,7 +57,7 @@ There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com
 The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected. To skip the tests, add the following to the maven build command:  `-Dmaven.test.skip=true`
 
 ### Data Seeder
-A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads the DB with the appropriate data (Issues, Projects, Accounts) to enable the viewing and use of Tracker for evaluation purposes. To run the process, using the following: `mvn exec:java`
+A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads your DB with the appropriate [data](src/test/resources/data) (Issues, Projects, Accounts) to enable the viewing and use of Tracker for evaluation purposes. To run the process, using the following: `mvn exec:java`
 
 ## Future Features
 There are a number of future features that will be added to Tracker, including the following:
