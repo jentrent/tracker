@@ -1,7 +1,7 @@
 <img src="readme.jpg" width="165" height="55">
 	 
-<a href="#key-features">Video Demo</a> •
-<a href="http://jentrent.com/tracker" target="_blank">Live Site - Try it Yourself!</a> 
+<a href="http://jentrent.com/tracker target="_blank">Video Demo</a> •
+<a href="http://jentrent.com?video=tracker.mp4" target="_blank">Live Site - Try it Yourself!</a> 
 
 ## Table of Contents
 - [Description](#description)
@@ -18,7 +18,7 @@
 **Tracker** is a full-stack, Java web application for managing IT/software issues and bugs. It's built on Java/JEE, JSF/Primefaces, Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) pattern as well as other well-established object-oriented design patterns.
 
 ### Features
-Tracker was inspired by various well-known issue/bug management software. As such, Tracker includes the basic tracking features needed to group, assign, and manage issues/bugs through an established software development lifecylce (SDLC) workflow.  It's key features include the following:
+Tracker was inspired by various well-known issue/bug management software. As such, Tracker includes the features needed to create, group, assign, and route issues/bugs through a software development life cycle (SDLC).  It's key features include the following:
 - Create, update, and delete an issue/bug
 - Assign issues/bugs to various team members
 - Workflow an issue/bug through the SDLC process
