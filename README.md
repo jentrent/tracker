@@ -1,107 +1,80 @@
-<h1 align="center">
-  <br>
-  <a href="[WEB APP ADDRESS ONCE HOSTED]"><img src="readme_assets/tracker.png" alt="Tracker" width="400"></a>
-</h1>
+<img src="readme.jpg" width="165" height="55">
+	 
+<a href="http://jentrent.com/tracker target="_blank">Video Demo</a> •
+<a href="http://jentrent.com/tracker" target="_blank">Live Site</a> 
 
-<h4 align="center">Java JSF Issue and Project Web Application.</h4>
-<p align="center">
-  <a href="#key-features">Demo</a> •
-  <a href="#how-to-use">Live Site</a> 
-</p>
-
----
 ## Table of Contents
-- [Introduction](#intrduciton)
 - [Description](#description)
 	- [Features](#features)
-	- [Database Design](#database-design)
-	- [MVC Structure](#mvc-structure)
-- [Technologies](#technologies)
-    - [Built With](#built-with)
-    - [Why](#why)
+	- [Technologies](#technologies)
+- [Install and Run](#install-and-run)
+	- [Dependencies](#dependencies)
+	- [Setup](#setup)
+	- [Data Seeder](#data-seeder)
 - [Future Features](#future-features)
 - [Author](#author)
-    - [Socials](#socials)
 
----
-## Introduction
-**Tracker** is a full stack web application created in the spirit of many project management applicaiton services like Jira.
-
-Displaying an understanding of the fundamentals of both code development and the operational functions as a developer were the core of this project.
-
----
 ## Description
-Tracker is a full-stack java application that replicates many project management applications (i.e. JIRA). The program consists of three key components: a login/account creation component, a projects component, and a issues/bug component. The program allows for users to create an account setting their desired role (eg. Developer, Tester) within the application. The user can then create, update, and view Projects and create, update and view Issues/Bugs. Searching and filtering for issues/bugs is a main use case that allows for the in-depth searching of issues/bugs that meet user-selected criteria.  It was this issue/bug filtering that proved to be the biggest development challenge.  This challenge was resolved through the use of a filter class to encapsulate the filter request as well as leveraging the JPA query capabilities to implement the filtering action itself.
+**Tracker** is a full-stack, Java web application for managing IT/software issues and bugs. It's built on Java/JEE, JSF/Primefaces, Spring, JPA/Hibernate, and PostgreSQL. The application is designed using the Model-View-Controller (MVC) pattern as well as other well-established object-oriented design patterns.
 
-#### Use Cases
-- Create, update, view and delete user account.
-- Create, update, view and delete project.
-- Create, update, view and delete issues/bugs.
-- Classify issues/bug types, severity, and status.
-- Search/filter for issues based on type, severity, and status.
-- Browse for project.
+### Features
+Tracker was inspired by various well-known issue/bug management software. As such, Tracker includes the features needed to create, group, assign, and route issues/bugs through a software development life cycle (SDLC).  It's key features include the following:
+- Create, update, and delete an issue/bug
+- Assign issues/bugs to various team members
+- Workflow an issue/bug through the SDLC process
+- Create, update, and delete a project
+- Create and update a user account
+- List, filter, and find issues/bugs
+- List, filter, and find projects
 
-#### Database Design
-<p align="center">
-<img  src="readme_assets/model.png" width="80%">
-</p>
+### Technologies
+- Back-end: Java/JEE, JPA/Hibernate/JDBC/SQL, Spring, JUnit
+- Front End: JSF, JSTL, PrimeFaces, HTML, CSS
+- Default app server: Tomcat
+- Default DB server: PostgreSQL
 
-#### MVC Structure
-A quick look at the MVC structure of this project.
+## Install and Run
+There is <a href="#key-features">Video Demo</a> and <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> for you to try it out. Or, if you would like to setup and run the project yourself, please use the section below.
 
-        ├── README.md
-        ├── code-format.xml
-        ├── pom.xml
-        ├── readme_assets
-        ├── src
-        │  ├── main
-        │   ├── java
-        │   │   └── com
-        │   │       └── jentrent
-        │   │           └── tracker
-        │   │               ├── dao
-        │   │               ├── model
-        │   │               ├── service
-        │   │               └── view
-        │   ├── resources
-        │   └── webapp
-        └── test
- 
+### Dependencies
 
----
-## Technologies
-**Built With** <br>
-Java • JSF • PrimeFaces • Spring • Hibernate • PostgreSQL • Heroku
+- Java 8 or higher
+- Maven
+- Java web app server
+- PostgreSQL database server
 
-**Why** <br>
-<table>
-  <tr>
-    <td nowrap><strong>JSF</strong></td>
-    <td>Popular component-centric framework that eases the development of Java web applications.</td>
-  </tr>
-  <tr>
-    <td nowrap><strong>PrimeFaces</strong></td>
-    <td>A great third-party UI that adds a nice aesthetic to the user interaction.</td>
-  </tr>
-</table>
+### Setup
+1. Create a postgres user account for DB access 
+2. Log into postgres and run the Tracker DB create script [`tracker_create.sql`](src/main/resources/sql/tracker_create.sql)
+3. Add the DB account/pw to the Test [`persistence.xml`](src/test/resources/META-INF/persistence.xml)
+4. Add the DB account/pw to the main deployment [`persistence.xml`](src/main/resources/META-INF/persistence.xml)
+5. Build the application using the command: `mvn clean install`
+6. Deploy the `target/tracker-1.0.war` to your app server
 
-	
----
+The build will run the complete set of [JUnit Tests](src/test/java/com/jentrent/tracker/service/test/) verify the setup is working as expected. To skip these tests, add the following to the maven build command:  `-Dmaven.test.skip=true`
+
+### Data Seeder
+A [`Data Seeder`](src/test/java/com/jentrent/tracker/seed/DataSeeder.java) is provided that loads your DB with the appropriate sample [data](src/test/resources/data) (accounts, issues, projects) to enable the viewing and use of Tracker for demo and evaluation purposes. To run this data seed process, execute the following maven command: `mvn exec:java`
+
 ## Future Features
+There are a number of future features that will be added to Tracker, including the following:
+- Ability to add notes to an issue, including screenprints and updates
+- Email notifications for assigned issues and tracking status changes
+- Rest API for all entity CRUD operations
+- Web look-and-feel updates, including styling
 
-- Functionalities
-	- Comments/note
-	- Email Notification	
-- Further Rest API configurations.
-- Styling updates.
+## Author
 
----
-## Author: Jennifer Trent
-_Website_: www.jentrent.com <br>
+Jennifer Trent (<a href="http://jentrent.com" target="_blank">My Website</a>)
 
-**Socials**<br>
-[![Follow me on GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jentrent12) 
+[![Follow me on GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jentrent) 
 [![Follow me on LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jenniferltrent/)
 [![Email me](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Jltrent12@gmail.com)
+
+</div>
+
+
+
+
 
 ---

@@ -125,6 +125,8 @@ public class IssueView extends BaseView implements Serializable{
 
 		}
 
+		System.out.println(issue.getDescription());
+
 		return "issue";
 	}
 
@@ -157,6 +159,8 @@ public class IssueView extends BaseView implements Serializable{
 	}
 
 	public String submitUpdate(){
+
+		System.out.println(issue.getDescription());
 
 		String page = "issueList";
 

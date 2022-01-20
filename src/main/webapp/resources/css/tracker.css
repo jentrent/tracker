@@ -14,3 +14,11 @@ body {
 	float: left;
 	height: 100vh;
 }
+
+.ui-datatable-frozenlayout-left {
+        width: 20%;
+    }
+
+    .ui-datatable-frozenlayout-right {
+        width: 80%;
+    }

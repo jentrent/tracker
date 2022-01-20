@@ -161,9 +161,16 @@ public class ProjectListView extends BaseView implements Serializable{
 
 		if(p.getDescription().length() > 30){
 
-			Document plain = Jsoup.parse(p.getDescription().substring(0, 30));
+			Document plain = Jsoup.parse(p.getDescription());
 
-			return plain.body().text() + "...";
+			String text = plain.body().text();
+
+			if(text.length() > 30){
+				return text.substring(0, 30) + "...";
+			}else{
+				return text;
+			}
+
 		}else{
 
 			Document plain = Jsoup.parse(p.getDescription());

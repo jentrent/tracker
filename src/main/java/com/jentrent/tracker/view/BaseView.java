@@ -60,7 +60,29 @@ public class BaseView{
 
 	}
 
+	protected void saveError(String error){
+
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, error, null);
+
+		FacesContext.getCurrentInstance().addMessage("msg", facesMsg);
+
+	}
+
 	protected Object getRequestParam(String name){
+
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+
+		return req.getParameter(name);
+	}
+
+	protected void setRequestAttr(String name, Object value){
+
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+
+		req.setAttribute(name, value);
+	}
+
+	protected Object getRequestAttr(String name){
 
 		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 

@@ -80,14 +80,26 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 								<p:commandButton update="account_form" value="Update"
 									type="submit" action="#{accountView.submitUpdate}"
-									styleClass="p-mr-2 p-mb-2" style="width: auto" />
+									styleClass="p-mr-2 p-mb-2" style="width: auto">
+									
+									<p:confirm header="Confirm Update" message="Update your account?" icon="pi pi-exclamation-triangle"/>
+   
+   
+								</p:commandButton>
+									
 								<h:outputText value="&#160;" />
 
 								<p:commandButton value="Cancel" type="submit"
 									action="#{accountView.submitCancel}" process="@this"
 									styleClass="p-mb-2" style="width: auto" />
+									
 							</p:column>
 						</p:row>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+           					<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+        				</p:confirmDialog>
 
 					</p:panelGrid>
 				</div>

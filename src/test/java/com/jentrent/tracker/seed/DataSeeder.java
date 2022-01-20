@@ -95,11 +95,11 @@ public class DataSeeder{
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
+		reader.readLine(); // Header
+
 		String line = reader.readLine();
 
 		while(line != null){
-
-			log.info(line);
 
 			String[] atts = line.split(",");
 
@@ -115,6 +115,7 @@ public class DataSeeder{
 			accountService.createAccount(a);
 
 			log.info("Created account with email: " + a.getEmail());
+
 			line = reader.readLine();
 
 		}
@@ -131,8 +132,9 @@ public class DataSeeder{
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
+		reader.readLine(); // Header
+
 		String line = reader.readLine();
-		line = reader.readLine();
 
 		int count = 0;
 
@@ -175,8 +177,9 @@ public class DataSeeder{
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 
+		reader.readLine(); // Header
+
 		String line = reader.readLine();
-		line = reader.readLine();
 
 		while(line != null){
 
