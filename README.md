@@ -1,6 +1,6 @@
 <img src="readme.jpg" width="165" height="55">
 	 
-<a href="http://jentrent.com/ target="_blank">Video Demo</a> •
+<a href="http://jentrent.com/?video=tracker">Video Demo</a> •
 <a href="http://jentrent.com/tracker" target="_blank">Live Site</a> 
 
 ## Table of Contents
